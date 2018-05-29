@@ -1,0 +1,173 @@
+﻿<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+PUBLIC "-//ibatis.apache.org//DTD Mapper 3.0//EN"
+"http://ibatis.apache.org/dtd/ibatis-3-mapper.dtd">
+
+
+<!-- 使用namespace的话sql搜索定位会比较方便 -->
+<mapper namespace="com.hwl.service.dao.UserMapper">
+
+	<resultMap id="UserMap" type="com.hwl.service.model.User">
+        <result property="userId" column="user_id"/>
+        <result property="mobile" column="mobile"/>
+        <result property="status" column="status"/>
+        <result property="createDate" column="create_date"/>
+        <result property="updateByAdm" column="update_by_adm"/>
+        <result property="updateDate" column="update_date"/>
+        <result property="password" column="password"/>
+        <result property="registType" column="regist_type"/>
+        <result property="nickname" column="nickname"/>
+        <result property="openId" column="open_id"/>
+        <result property="agentId" column="agent_id"/>
+        <result property="bindDate" column="bind_date"/>
+        <result property="bindState" column="bind_state"/>
+        <result property="price" column="price"/>
+        <result property="successDate" column="success_date"/>
+	</resultMap>
+	<!-- 分页查询接口 -->
+	<select id="getUserListPage" parameterType="User"
+		resultMap="UserMap">
+		select * from user u where 1=1
+		<if test="mobile!=null and mobile!=''">
+		 and u.mobile = #{mobile}
+		 </if>
+		<if test="nickname!=null and nickname!=''">
+		 and u.nickname like CONCAT('%',#{nickname},'%' )
+		 </if>
+		 <if test="beginTime!=null and beginTime!=''">
+		and u.create_date >= #{beginTime}
+		</if>
+		<if test="endTime!=null and endTime!=''">
+		and u.create_date &lt;= #{endTime}
+		</if>
+		<!-- <trim prefix="WHERE" prefixOverrides="AND | OR"> -->
+	</select>
+	<!-- 按编号查询 -->
+	<select id="getUserById" parameterType="int" resultMap="UserMap">
+		select *
+		from user where user_id = #{userId}
+	</select>
+	
+	<select id="login" parameterType="User" resultMap="UserMap">
+		select *
+		from user where password = #{password} and mobile=#{mobile} and status=1
+	</select>
+	
+	<select id="getUserByMobile" parameterType="User" resultMap="UserMap">
+		select *
+		from user where mobile=#{mobile} and status=1
+	</select>
+	
+	<select id="getUserByOpenid" parameterType="User" resultMap="UserMap">
+		select *
+		from user where open_id=#{openId} and status=1
+	</select>
+	
+	<select id="getUserByAgents" parameterType="User" resultMap="UserMap">
+		select *
+		from user where agent_id=#{agentId} and status=1 and bind_state=1
+	</select>
+	
+	<select id="getUserByAgent" parameterType="User" resultMap="UserMap">
+		select *
+		from user where agent_id=#{agentId} and status=1 and bind_state=1 and date(success_date) = curdate() and success_date is not null;
+	</select>
+	
+	<select id="getMoneys" parameterType="User" resultMap="UserMap">
+		select SUM(o.total_from_bdh) as price
+		from user u,orders o where u.mobile=#{mobile} and u.status=1 and u.user_id=o.create_by_user and o.status=1 or o.status=2 and u.mobile=#{mobile} and u.status=1 and u.user_id=o.create_by_user;
+	</select>
+	
+	<select id="getMoneysOpenid" parameterType="User" resultMap="UserMap">
+		select SUM(o.total_from_bdh) as price
+		from orders o where o.openid=#{openId} and o.create_by_user is null and o.status=1 or o.status=2 and o.openid=#{openId} and o.create_by_user is null;
+	</select>
+	
+	<!-- 添加 -->
+	<insert id="insertUser" parameterType="User" useGeneratedKeys="true" keyProperty="userId">
+        INSERT INTO user (
+        	user_id ,
+        	mobile ,
+        	status ,
+        	password ,
+        	regist_type ,
+        	nickname,
+        	open_id,
+        	agent_id,
+        	bind_date,
+        	bind_state,
+        	success_date
+        ) VALUES (
+        	#{userId} ,
+        	#{mobile} ,
+        	#{status} ,
+        	#{password} ,
+        	#{registType} ,
+        	#{nickname},
+        	#{openId},
+        	#{agentId},
+        	#{bindDate},
+        	#{bindState},
+        	#{successDate}
+        )
+	</insert>
+	<!-- 修改 -->
+	<update id="updateUser" >
+        UPDATE user 
+        <trim prefix="SET" suffixOverrides=",">
+	        <if test="mobile!=null and mobile!=''">
+	        mobile = #{mobile},
+	        </if>
+	        <if test="status!=null and status!=''">
+	        status = #{status},
+	        </if>
+	        <if test="createDate!=null and createDate!=''">
+	        create_date = #{createDate},
+	        </if>
+	        
+	        <if test="nickname!=null and nickname!=''">
+	        nickname = #{nickname},
+	        </if> 
+	        
+	        <if test="updateByAdm!=null and updateByAdm!=''">
+	        update_by_adm = #{updateByAdm},
+	        </if>
+	        <if test="1==1">
+	        update_date = now(),
+	        </if>
+	        <if test="password!=null and password!=''">
+	        password = #{password},
+	        </if>
+	        <if test="registType!=null and registType!=''">
+	        regist_type = #{registType},
+	        </if>
+	        <if test="nickname!=null and nickname!=''">
+	        nickname = #{nickname},
+	        </if>
+	        <if test="openId!=null and openId!=''">
+	        open_id = #{openId},
+	        </if>
+	        <if test="agentId!=null and agentId!=''">
+	        agent_id = #{agentId},
+	        </if>
+	        <if test="bindDate!=null and bindDate!=''">
+	        bind_date = #{bindDate},
+	        </if>
+	        <if test="bindState!=null and bindState!=''">
+	        bind_state = #{bindState},
+	        </if>
+	        <if test="successDate!=null and successDate!=''">
+	        success_date = #{successDate},
+	        </if>
+	      </trim>  
+        WHERE 
+	        mobile = #{mobile} 
+	</update>
+	<!-- 删除 -->
+	<delete id="deleteUser" parameterType="int">
+        UPDATE user set state='X' WHERE
+        user_id = #{userId} 
+    </delete>
+	
+</mapper>
+

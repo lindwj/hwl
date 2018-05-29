@@ -1,0 +1,115 @@
+﻿<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+PUBLIC "-//ibatis.apache.org//DTD Mapper 3.0//EN"
+"http://ibatis.apache.org/dtd/ibatis-3-mapper.dtd">
+
+
+<!-- 使用namespace的话sql搜索定位会比较方便 -->
+<mapper namespace="com.hwl.service.dao.SdDepartmentMapper">
+
+	<resultMap id="SdDepartmentMap" type="com.hwl.service.model.SdDepartment">
+        <result property="sdDepartmentId" column="sd_department_id"/>
+        <result property="sdUserItemId" column="sd_user_item_id"/>
+        <result property="deptNo" column="dept_no"/>
+        <result property="deptName" column="dept_name"/>
+        <result property="parentDeptNo" column="parent_dept_no"/>
+        <result property="psdDepartmentId" column="p_sd_department_id"/>
+        <result property="createDate" column="create_date"/>
+        <result property="sdElectResAccId" column="sd_elect_res_acc_id"/>
+	</resultMap>
+	<!-- 分页查询接口 -->
+	<select id="getSdDepartmentListPage" parameterType="SdDepartment"
+		resultMap="SdDepartmentMap">
+		select * from sd_department
+		<!-- <trim prefix="WHERE" prefixOverrides="AND | OR"> -->
+	</select>
+	<!-- 按编号查询 -->
+	<select id="getSdDepartmentById" parameterType="int" resultMap="SdDepartmentMap">
+		select *
+		from sd_department where sd_department_id = #{sdDepartmentId}
+	</select>
+	<!-- 添加 -->
+	<insert id="insertSdDepartment" parameterType="SdDepartment" useGeneratedKeys="true" keyProperty="sdDepartmentId">
+        INSERT INTO sd_department (
+        	sd_department_id ,
+        	sd_user_item_id ,
+        	dept_no ,
+        	dept_name ,
+        	parent_dept_no ,
+        	p_sd_department_id ,
+        	create_date ,
+        	sd_elect_res_acc_id 
+        ) VALUES (
+        	#{sdDepartmentId} ,
+        	#{sdUserItemId} ,
+        	#{deptNo} ,
+        	#{deptName} ,
+        	#{parentDeptNo} ,
+        	#{psdDepartmentId} ,
+        	#{createDate} ,
+        	#{sdElectResAccId} 
+        )
+	</insert>
+	
+	<insert id="insertSdDepartmentList" parameterType="SdDepartment" >
+        INSERT INTO sd_department (
+        	sd_user_item_id ,
+        	dept_no ,
+        	dept_name ,
+        	parent_dept_no ,
+        	p_sd_department_id ,
+        	create_date ,
+        	sd_elect_res_acc_id 
+        ) VALUES
+        
+        <foreach collection="list" item="item" index="index" separator="," > 
+        (
+        	#{item.sdUserItemId} ,
+        	#{item.deptNo} ,
+        	#{item.deptName} ,
+        	#{item.parentDeptNo} ,
+        	#{item.psdDepartmentId} ,
+        	now() ,
+        	#{item.sdElectResAccId} 
+        )
+    </foreach>
+         
+	</insert>
+	
+	<!-- 修改 -->
+	<update id="updateSdDepartment" >
+        UPDATE sd_department 
+        <trim prefix="SET" suffixOverrides=",">
+	        <if test="sdUserItemId!=null and sdUserItemId!=''">
+	        sd_user_item_id = #{sdUserItemId},
+	        </if>
+	        <if test="deptNo!=null and deptNo!=''">
+	        dept_no = #{deptNo},
+	        </if>
+	        <if test="deptName!=null and deptName!=''">
+	        dept_name = #{deptName},
+	        </if>
+	        <if test="parentDeptNo!=null and parentDeptNo!=''">
+	        parent_dept_no = #{parentDeptNo},
+	        </if>
+	        <if test="psdDepartmentId!=null and psdDepartmentId!=''">
+	        p_sd_department_id = #{psdDepartmentId},
+	        </if>
+	        <if test="createDate!=null and createDate!=''">
+	        create_date = #{createDate},
+	        </if>
+	        <if test="sdElectResAccId!=null and sdElectResAccId!=''">
+	        sd_elect_res_acc_id = #{sdElectResAccId},
+	        </if>
+	      </trim>  
+        WHERE 
+	        sd_department_id = #{sdDepartmentId} 
+	</update>
+	<!-- 删除 -->
+	<delete id="deleteSdDepartment" parameterType="int">
+        UPDATE sd_department set state='X' WHERE
+        sd_department_id = #{sdDepartmentId} 
+    </delete>
+	
+</mapper>
+

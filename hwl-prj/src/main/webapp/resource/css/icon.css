@@ -1,0 +1,111 @@
+@charset "utf-8";
+/*btn*/
+a.btn:hover,a.btn:visited,a.btn:link{ color:#fff;}
+.btn{ min-width:35px; text-align:center; padding:7px 15px; display:block; margin:0 10px 0 0; float:left; border-radius:5px; -webkit-border-radius:5px; -moz-border-radius:5px; line-height:15px;}
+.btn_green{ background:#5ED5BE; color:#fff; font-size:12px;border: 1px solid #55C3AD;}
+.btn_blue{ background:#3497db; color:#fff; border: 1px solid #127dc6;}
+.btn_red{ background:#F87B78; color:#fff; font-size:12px;border: 1px solid #EC6866;}
+.btn_defult{ background:#ffae00; color:#fff;}
+a.btn_sure{ background:#32b5cb; font-size:16px; color:#fff; width:327px; height:45px; display:block; text-align:center; line-height:45px;border-radius:5px; -webkit-border-radius:5px; -moz-border-radius:5px; }
+a.btn_hui{ background:#EEEEEE; color:#666666;border: 1px solid #D1D1D1;}
+a.btn_hui:hover,a.btn_hui:link,a.btn_hui:visited{ color:#666666;}
+a.text_green{color: #0BB98B}
+
+/*page*/
+.page_icon{ background:url(../images/pageicon.png) no-repeat; display:block;}
+.tel_icon{ background-position:-40px 0; width:30px; height:30px; float:left; margin:20px 5px;}
+.user_icon{ background-position:-310px 0px; width:21px; height:21px; float:left; margin:19px 5px;}
+.outlogin_icon{ background-position:-310px -22px; width:21px; height:21px; float:left; margin:19px 5px;}
+.add_icon{ background-position: -396px 0px;width: 20px;height: 20px;}
+/*导航*/
+.overview_icon{ background-position:-20px 0;}
+.physical_icon{ background-position:-0px -0px;}
+.ditributed_icon{ background-position:-20px -20px;}
+.cloud_icon{ background-position:0 -20px;}
+.alarm_icon{ background-position:-20px -40px;}
+.web_icon{ background-position:0 -40px;}
+.personal_icon{ background-position:0 -60px;}
+.set_icon{ background-position:0 -80px;}
+.twice_icon{ background-position: -20px -80px; float: right !important; margin-rigth:10px;}
+.sel_icon{ background-position: -20px -100px;}
+.active .sel_icon{ background-position: -20px -60px;}
+/*crumb*/
+.tap_icon{background-position: -40px  0; width: 15px; float: left; height: 20px; margin:5px 0 0 0;}
+/*index*/
+.lweb_icon{ background-position: 0 -220px;}
+.lcloud_icon{ background-position: -60px -220px;}
+.lphysic_icon{ background-position:-120px -220px;}
+.ldistribute_icon{ background-position:-180px -220px;}
+.sweb_icon{ background-position: -320px -220px;}
+.scloud_icon{ background-position: -340px -220px;}
+.alarm_tip_bg{ background-position: -360px -220px; width: 10px; height: 25px;}
+.alarm_blue:hover .alarm_tip_bg{ background-position: -380px -220px; width: 80px; height: 25px;}
+.down_icon{ background-position: -445px -25px; width: 20px; height: 20px; float: right;}
+.cat_type01{ background-position:0 -140px; background-repeat:repeat-x;}
+.type01{ background-position:-110px 0;}
+a:hover .type01{ background-position:-110px -25px;}
+.cat_type02{ background-position:0 -165px; background-repeat:repeat-x;}
+.type02{ background-position:-140px 0;}
+a:hover .type02{ background-position:-140px -25px;}
+.cat_type03{ background-position:0 -190px; background-repeat:repeat-x;}
+.type03{ background-position:-170px 0;}
+a:hover .type03{ background-position:-170px -25px;}
+.cat_type01 .cat_type_con{ background:url(../images/pageicon.png) -50px -60px; margin-left:-75px; width:130px;}
+.cat_type02 .cat_type_con{ background:url(../images/pageicon.png) -210px -60px; width:150px; margin-left:-85px;}
+.cat_type03 .cat_type_con{ background:url(../images/pageicon.png) -380px -60px; width:150px; margin-left:-85px;}
+.type1{ background-position:-70px 0; width:40px; height:15px; float:left; margin:0 15px;}
+.type2{ background-position:-70px -15px; width:40px; height:15px; float:left; margin:0 15px;}
+.type3{ background-position:-70px -30px; width:40px; height:15px; float:left; margin:0 15px;}
+.type4{ background-position:-70px -45px; width:40px; height:15px; float:left; margin:0 15px;}
+/*列表页*/
+.detail_icon{ background-position:-210px 0; width:20px; height:20px; float:left; margin:3px 2px 0 0;}
+.modify_icon{ background-position:-230px 0; width:20px; height:20px; float:left; margin:5px 2px 0 0;}
+.setting_icon{ background-position:-370px 0; width:20px; height:20px; float:left; margin:3px 2px 0 0;}
+.delete_icon{ background-position:-270px 0; width:20px; height:20px; float:left; margin:3px 2px 0 0;}
+.clock_icon{ background-position:-352px 0; width:20px; height:20px; float:left; margin:3px 2px 0 0;}
+.stop_icon{ background-position:-460px 0; width:20px; height:20px; float:left; margin:3px 2px 0 0;}
+.search_icon{ background-position:-210px -20px; width:20px; height:20px; float:right; margin:7px;}
+.alarm_open{ background-position:-270px -20px; width:70px; height:35px; float:left; margin:0 0 0 10px;}
+.alarm_close{ background-position:-340px -20px; width:70px; height:35px; float:left; margin:0 0 0 10px;}
+.start_icon{ background-position:-440px 0; width:20px; height:20px; float:left; margin:5px 2px 0 0;}
+.pause_icon{ background-position:-420px 0; width:20px; height:20px; float:left; margin:5px 2px 0 0;}
+.disable_icon{ background-position:-460px 0; width:20px; height:20px; float:left; margin:5px 2px 0 0;}
+.setlist_icon{ background-position:-480px 0; width:20px; height:20px; float:left; margin:5px 2px 0 0;}
+.auth_icon{ background-position:-500px 0; width:20px; height:20px; float:left; margin:3px 2px 0 0;}
+.cpu_icon{ width: 35px; height: 1px; background: #3497db; margin: 12px 5px; float: left;}
+.rules_top{ background-position: 0 -100px; width: 20px; height: 20px;}
+.rules_bottom{ background-position: 0 -120px; width: 20px; height: 20px;}
+/*分页*/
+.page_prev{ background-position:-475px -20px; width:40px; height:30px; float:left; margin:0 0 0 10px;}
+.page_next{ background-position:-515px -20px; width:40px; height:30px; float:left; margin:0 0 0 10px;}
+
+/*按钮组*/
+.btn_group{background: #fff url(../images/pageicon.png) -390px -20px;border: 1px solid #D3D8DE;border-radius: 3px;float: left;height: 26px;width: 80px;position: relative;cursor: pointer;}
+.btn_group span{padding:0 25px 0 5px;display: inline-block;}
+.btn_group ul{background: #fff none repeat scroll 0 0;border: 1px solid #D3D8DE;border-radius:0 0 3px 3px;float: left;width: 60px;position: absolute;top: 25px;left: -1px;padding:0 10px;z-index: 2}
+table.alarm_table tr td .btn_group ul li a{display: inline-block; border-bottom: 1px solid #D3D8DE;width: 100%;color: #666}
+table.alarm_table tr td .btn_group ul li a:hover{color: #3497db}
+.btn_group ul li:last-child a{border-bottom: none}
+.hide{display: none}
+
+/*弹框内容样式*/
+.cat_table_footer{ min-height: 31px; margin: 10px 0 0 0;}
+.cat_form{ clear: both; border:1px #D3D8DE solid;border-radius: 3px;margin: 0px 10px 20px 10px}
+.form_control{ padding: 10px 0; min-height: 30px; clear: both;}
+.cat_form h3{ color: #4D5756; font-size: 14px;background: #F8F8F8;border-bottom:1px #D3D8DE solid;line-height: 40px;padding: 0 20px;margin-bottom: 5px}
+.cat_form h3 a i{ float: left;margin:8px 5px 0 0}
+.cat_form .form_control{padding: 5px 20px}
+.form_control .alarm_table th{font-size: 12px}
+.form_control .alarm_table td{padding: 5px 10px}
+.form_control label.control_label{ float: left; width:140px; min-height: 32px; text-align: right; line-height: 32px; font-size: 12px; display: block;}
+.form_control .fleft .disk_title1{ width: 50%;}
+.form_control table tr td input[type="text"]{width: 80px; margin: 0 5px; border: 1px solid #e1e1e1; height: 25px; line-height: 25px;border-radius: 3px}
+.form_control .fleft input[type="checkbox"],.form_control .fleft label{ float: left; margin: 8px 5px 0 0; line-height: 20px;}
+.form_control .fleft input[type="radio"]{float: left; margin: 10px 5px 0 0;}
+.form_control .fleft label{ padding: 0 15px 0 0;}
+.form_control .fleft .control-input{ width: 320px; border: 1px solid #e1e1e1; height: 28px; line-height: 28px; text-indent: 5px;}
+.form_control .fleft textarea{ width: 320px; border: 1px solid #e1e1e1; height: 80px;}
+.cat_form .line_two{clear: none;width: 40%;padding: 5px 20px;display: inline-block}
+.cat_form .form_control label.control_label{width: auto;}
+
+

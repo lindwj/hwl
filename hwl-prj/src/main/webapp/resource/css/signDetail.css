@@ -1,0 +1,243 @@
+
+/*标题*/
+.ordertitle{
+    width: 444px;
+    height:32px;
+    border-bottom: 1px solid #c6cacc;
+ }
+
+.ordertitle h1{
+    width: 442px;
+    line-height: 30px;
+    background-color:#e4eaec;
+    border: 1px solid #FFFFFF;
+    color: #58666e;
+    text-align: center;
+    font-size: 13px;
+    margin-top: 1px;
+}
+
+.prodetail{
+    width: 210px;
+    float: left;
+    margin: 40px 0 0 40px;
+}
+.prodetail1{
+    width: 190px;
+    float: left;
+    margin: 40px 0 0 0;
+}
+.prodetail2{
+    width: 375px;
+    float: left;
+    margin: 40px 0 0 40px;
+}
+
+.prodetail p,.prodetail1 p,.prodetail2 p{
+    float: left;
+    color: #58666e;
+
+}
+.prodetail input,.prodetail1 input,.prodetail2 input,.prodetail select,.prodetail1 select{
+    float: left;
+    width: 100px;
+    outline: none;
+    line-height: 20px;
+    margin-left: 10px;
+    color: #58666e;
+}
+
+/*确认和取消按钮*/
+.orderbtn{
+    width: 140px;
+    margin: 30px auto 0;
+}
+.orderbtn input{
+    border-bottom: 2px solid #b0b4b5;
+    height: 25px;
+    margin: 0 10px;
+    font-size: 12px;
+
+}
+
+
+
+/*商品展示样式*/
+.content-main {
+    width:100%;
+    margin: 0 auto;
+}
+
+.table{
+    border:1px solid #e4eaec;
+    width:600px;
+    margin: 20px auto 0 auto;
+}
+
+.redicon{
+    color: red;
+    padding-top: 3px;
+    vertical-align: -3px;
+    margin-right: 5px;
+}
+
+.addproduct{
+    float: left;
+    margin:20px 0 0 20px;
+}
+.addproduct textarea{
+    width: 479px;
+    float: left;
+    margin-left: 19px;
+    outline: none;
+    border: 1px solid #c6cacc;
+    height: 80px;
+    margin-bottom: 20px;
+}
+.addproduct p{
+    font-size: 14px;
+    float: left;
+    color: #3d474d;
+}
+.addproduct input, .addproduct select, .addproduct1 select{
+    width: 150px;
+    float: left;
+    margin-left: 20px;
+    outline: none;
+}
+.addproduct1{
+    float: right;
+    margin:20px 20px 0 0 ;
+}
+.addproduct1 p{
+    font-size: 14px;
+    float: left;
+    color: #3d474d;
+}
+.addproduct1 input{
+    width: 200px;
+    float: left;
+    margin-left: 20px;
+    outline: none;
+}
+
+.addproduct2{
+    float: left;
+    margin:20px  0 20px 20px;
+    width: 800px;
+}
+.addproduct2 p{
+    font-size: 14px;
+    float: left;
+    color: #3d474d;
+}
+.input1, .input2, .input3{
+    width: 200px;
+    float: left;
+    margin-left: 20px;
+    outline: none;
+}
+.input2, .input3{
+    margin-left: 28px;
+}
+
+
+
+.add1{
+    float: left;
+    margin:20px 0 0 20px;
+    width:60px;
+}
+
+.add1 p{
+    font-size: 14px;
+    float: left;
+    color: #3d474d;
+    height: 300px;
+}
+.picup{
+    float: left;
+    margin: 20px 20px;
+
+}
+.pic_box{
+    width: 100px;
+    height: 100px;
+    border: 1px solid #c6cacc
+}
+.pic_box img{
+    width: 100%;
+    height: 100%;
+}
+
+/*添加按钮*/
+.add{
+    border-bottom: 2px solid #b0b4b5;
+    border-top: none;
+    border-right: none;
+    border-left: none;
+    height: 22px;
+    color: #808080;
+    padding: 0 10px;
+    text-shadow: 0 0 20px #ffffff;
+    background-color: #ececec;
+    font-size: 12px;
+    border-radius: 2px 2px 2px 2px;
+    outline: none;
+    cursor: pointer;
+    margin:10px 0 0 13px;
+}
+.add:hover{
+    color: #4d4d4d;;
+}
+
+.footerbtn{
+    margin: 20px auto;
+    width: 154px;
+
+}
+
+/*每项必填，合同编号不能超过分配数量!*/
+#errorm1{
+    font-size: 13px;
+    color: white;
+    position: absolute;
+    padding: 10px 10px;
+    background-color: rgba(77,77,77,0.6);
+    border-radius: 20px 20px 20px 20px;
+    text-align: center;
+    top:50%;
+    left: 44.5%;
+    display: none;
+    z-index: 998;
+
+}
+#errorm2{
+    font-size: 13px;
+    color: white;
+    position: absolute;
+    padding: 10px 10px;
+    background-color: rgba(77,77,77,0.6);
+    border-radius: 20px 20px 20px 20px;
+    text-align: center;
+    top:70%;
+    left: 44.5%;
+    display: none;
+    z-index: 998;
+
+}
+#errorm4, #errorm5, #errorm6, #errorm7,#errorm8, #errorm9, #errorm10, #errorm11,#errorm12, #errorm13, #errorm14, #errorm15, #errorm16{
+font-size: 15px;
+    color: white;
+    position: absolute;
+    padding: 10px 15px;
+    background-color: rgba(77,77,77,0.6);
+    border-radius: 10px 10px 10px 10px;
+    text-align: center;
+    top:57%;
+    left: 45%;
+    display: none;
+    z-index: 998;
+}
+
+

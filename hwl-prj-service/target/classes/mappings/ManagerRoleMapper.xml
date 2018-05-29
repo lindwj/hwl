@@ -1,0 +1,58 @@
+﻿<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+PUBLIC "-//ibatis.apache.org//DTD Mapper 3.0//EN"
+"http://ibatis.apache.org/dtd/ibatis-3-mapper.dtd">
+
+
+<!-- 使用namespace的话sql搜索定位会比较方便 -->
+<mapper namespace="com.hwl.service.dao.ManagerRoleMapper">
+
+	<resultMap id="ManagerRoleMap" type="com.hwl.service.model.ManagerRole">
+        <result property="managerRoleId" column="manager_role_id"/>
+        <result property="managerId" column="manager_id"/>
+        <result property="roleId" column="role_id"/>
+        <result property="state" column="state"/>
+	</resultMap>
+	<!-- 分页查询接口 -->
+	<select id="getManagerRoleListPage" parameterType="ManagerRole"
+		resultMap="ManagerRoleMap">
+		select * from manager_role
+		<!-- <trim prefix="WHERE" prefixOverrides="AND | OR"> -->
+	</select>
+	<!-- 按编号查询 -->
+	<select id="getManagerRoleById" parameterType="int" resultMap="ManagerRoleMap">
+		select *
+		from manager_role where manager_role_id = #{managerRoleId}
+	</select>
+	<!-- 添加 -->
+	<insert id="insertManagerRole" parameterType="ManagerRole" >
+        INSERT INTO manager_role (
+        	manager_id ,
+        	role_id 
+        ) VALUES (
+        	#{managerId} ,
+        	#{roleId}
+        )
+	</insert>
+	<!-- 修改 -->
+	<update id="updateManagerRole" >
+        UPDATE manager_role 
+        <trim prefix="SET" suffixOverrides=",">
+	        <if test="roleId!=null and roleId!=''">
+	        role_id = #{roleId},
+	        </if>
+	        <if test="state!=null and state!=''">
+	        state = #{state},
+	        </if>
+	      </trim>  
+        WHERE 
+	        manager_id = #{managerId}
+	</update>
+	<!-- 删除 -->
+	<delete id="deleteManagerRole" parameterType="int">
+        UPDATE manager_role set state='X' WHERE
+        manager_role_id = #{managerRoleId} 
+    </delete>
+	
+</mapper>
+

@@ -1,0 +1,129 @@
+﻿<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+PUBLIC "-//ibatis.apache.org//DTD Mapper 3.0//EN"
+"http://ibatis.apache.org/dtd/ibatis-3-mapper.dtd">
+
+
+<!-- 使用namespace的话sql搜索定位会比较方便 -->
+<mapper namespace="com.hwl.service.dao.SdUserItemMapper">
+
+	<resultMap id="SdUserItemMap" type="com.hwl.service.model.SdUserItem">
+        <result property="sdUserItemId" column="sd_user_item_id"/>
+        <result property="hslbNo" column="hslb_no"/>
+        <result property="hslbNa" column="hslb_na"/>
+        <result property="hslbDesc" column="hslb_desc"/>
+        <result property="isLevel" column="is_level"/>
+        <result property="hspjt" column="hspjt"/>
+        <result property="hslbNoRule" column="hslb_no_rule"/>
+        <result property="sdElectResAccId" column="sd_elect_res_acc_id"/>
+        <result property="createDate" column="create_date"/>
+	</resultMap>
+	<!-- 分页查询接口 -->
+	<select id="getSdUserItemListPage" parameterType="SdUserItem"
+		resultMap="SdUserItemMap">
+		select * from sd_user_item
+		<!-- <trim prefix="WHERE" prefixOverrides="AND | OR"> -->
+	</select>
+	<!-- 按编号查询 -->
+	<select id="getSdUserItemById" parameterType="int" resultMap="SdUserItemMap">
+		select *
+		from sd_user_item where sd_user_item_id = #{sdUserItemId}
+	</select>
+	<!-- 添加 -->
+	<insert id="insertSdUserItem" parameterType="SdUserItem" useGeneratedKeys="true" keyProperty="sdUserItemId">
+        INSERT INTO sd_user_item (
+        	sd_user_item_id ,
+        	hslb_no ,
+        	hslb_na ,
+        	hslb_desc ,
+        	is_level ,
+        	hspjt ,
+        	hslb_no_rule ,
+        	sd_elect_res_acc_id ,
+        	create_date 
+        ) VALUES (
+        	#{sdUserItemId} ,
+        	#{hslbNo} ,
+        	#{hslbNa} ,
+        	#{hslbDesc} ,
+        	#{isLevel} ,
+        	#{hspjt} ,
+        	#{hslbNoRule} ,
+        	#{sdElectResAccId} ,
+        	#{createDate} 
+        )
+	</insert>
+	
+	
+	<!-- 添加 -->
+	<insert id="insertSdUserItemList" parameterType="SdUserItem">
+        INSERT INTO sd_user_item (
+        	hslb_no ,
+        	hslb_na ,
+        	hslb_desc ,
+        	is_level ,
+        	hspjt ,
+        	hslb_no_rule ,
+        	sd_elect_res_acc_id ,
+        	create_date 
+        ) VALUES 
+        
+        <foreach collection="list" item="item" index="index" separator="," > 
+       
+         (
+        	#{item.hslbNo} ,
+        	#{item.hslbNa} ,
+        	#{item.hslbDesc} ,
+        	#{item.isLevel} ,
+        	#{item.hspjt} ,
+        	#{item.hslbNoRule} ,
+        	#{item.sdElectResAccId} ,
+        	now()
+        )
+        
+    </foreach>
+        
+       
+	</insert>
+	
+	
+	<!-- 修改 -->
+	<update id="updateSdUserItem" >
+        UPDATE sd_user_item 
+        <trim prefix="SET" suffixOverrides=",">
+	        <if test="hslbNo!=null and hslbNo!=''">
+	        hslb_no = #{hslbNo},
+	        </if>
+	        <if test="hslbNa!=null and hslbNa!=''">
+	        hslb_na = #{hslbNa},
+	        </if>
+	        <if test="hslbDesc!=null and hslbDesc!=''">
+	        hslb_desc = #{hslbDesc},
+	        </if>
+	        <if test="isLevel!=null and isLevel!=''">
+	        is_level = #{isLevel},
+	        </if>
+	        <if test="hspjt!=null and hspjt!=''">
+	        hspjt = #{hspjt},
+	        </if>
+	        <if test="hslbNoRule!=null and hslbNoRule!=''">
+	        hslb_no_rule = #{hslbNoRule},
+	        </if>
+	        <if test="sdElectResAccId!=null and sdElectResAccId!=''">
+	        sd_elect_res_acc_id = #{sdElectResAccId},
+	        </if>
+	        <if test="createDate!=null and createDate!=''">
+	        create_date = #{createDate},
+	        </if>
+	      </trim>  
+        WHERE 
+	        sd_user_item_id = #{sdUserItemId} 
+	</update>
+	<!-- 删除 -->
+	<delete id="deleteSdUserItem" parameterType="int">
+        UPDATE sd_user_item set state='X' WHERE
+        sd_user_item_id = #{sdUserItemId} 
+    </delete>
+	
+</mapper>
+

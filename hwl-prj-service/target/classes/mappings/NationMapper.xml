@@ -1,0 +1,121 @@
+﻿<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+PUBLIC "-//ibatis.apache.org//DTD Mapper 3.0//EN"
+"http://ibatis.apache.org/dtd/ibatis-3-mapper.dtd">
+
+
+<!-- 使用namespace的话sql搜索定位会比较方便 -->
+<mapper namespace="com.hwl.service.dao.NationMapper">
+
+	<resultMap id="NationMap" type="com.hwl.service.model.Nation">
+        <result property="id" column="id" jdbcType="INTEGER"/>
+        <result property="code" column="code"  jdbcType="VARCHAR"/>
+        <result property="province" column="province" jdbcType="VARCHAR"/>
+        <result property="city" column="city" jdbcType="VARCHAR"/>
+        <result property="district" column="district" jdbcType="VARCHAR"/>
+        <result property="parent" column="parent" jdbcType="INTEGER"/>
+        <result property="street" column="street" jdbcType="VARCHAR"/>
+        <result property="isStreet" column="is_street" jdbcType="INTEGER"/>
+        <result property="createByAdm" column="create_by_adm" jdbcType="INTEGER"/>
+        <result property="createTime" column="create_time" jdbcType="TIMESTAMP"/>
+        <result property="updateTime" column="update_time" jdbcType="DATE"/>
+        <result property="updateByAdm" column="update_by_adm" jdbcType="INTEGER"/>
+	</resultMap>
+	<!-- 分页查询接口 -->
+	<select id="getNationListPage" parameterType="Nation"
+		resultMap="NationMap">
+		select * from nation where create_by_adm = #{createByAdm}
+		<if test="district!=null and district!=''">
+	      and  parent = #{district}
+	        </if>
+		 
+	</select>
+	<!-- 按编号查询 -->
+	<select id="getNationById" parameterType="int" resultMap="NationMap">
+		select *
+		from nation where id = #{id}
+	</select>
+	
+	
+	<!-- 按区 分组 查询 店  绑定的街道 -->
+	<select id="getNationForStreet" parameterType="int" resultMap="NationMap">
+		
+		SELECT na.parent as parent ,GROUP_CONCAT(na.id) AS code,GROUP_CONCAT(na.street) AS street,na.district AS district
+		FROM nation na ,bind_street bs  WHERE bs.shop_id = #{id} AND bs.street = na.id
+		GROUP BY na.parent
+	</select>
+	
+	
+	<select id="getNationByCode" parameterType="String" resultMap="NationMap">
+		select *
+		from nation where code = #{code}
+	</select>
+	
+	<select id="getNationByCodeWx" parameterType="String" resultMap="NationMap">
+		select *
+		from nation where code = #{code}
+	</select>
+	
+	<select id="getNationByParentId" parameterType="int" resultMap="NationMap">
+		select *
+		from nation where parent = #{parentId}
+	</select>
+	
+	<!-- 添加 -->
+	<insert id="insertNation" parameterType="Nation" >
+        INSERT INTO nation (
+        	province ,
+        	city ,
+        	district ,
+        	parent ,
+        	street ,
+        	is_street ,
+        	create_by_adm
+        ) VALUES (
+        	#{province} ,
+        	#{city} ,
+        	#{district} ,
+        	#{parent} ,
+        	#{street} ,
+        	#{isStreet} ,
+        	#{createByAdm}
+        )
+	</insert>
+	<!-- 修改 -->
+	<update id="updateNation" >
+        UPDATE nation 
+        <trim prefix="SET" suffixOverrides=",">
+	        <if test="code!=null and code!=''">
+	        code = #{code},
+	        </if>
+	        <if test="province!=null and province!=''">
+	        province = #{province},
+	        </if>
+	        <if test="city!=null and city!=''">
+	        city = #{city},
+	        </if>
+	        <if test="district!=null and district!=''">
+	        district = #{district},
+	        </if>
+	        <if test="parent!=null and parent!=''">
+	        parent = #{parent},
+	        </if>
+	        <if test="street!=null and street!=''">
+	        update_time=now(),
+	        street = #{street},
+	        </if>
+	        <if test="isStreet!=null and isStreet!=''">
+	        is_street = #{isStreet},
+	        </if>
+	      </trim>  
+        WHERE 
+	        id = #{id} 
+	</update>
+	<!-- 删除 -->
+	<delete id="deleteNation" parameterType="int">
+        delete from nation WHERE
+        id = #{id} 
+    </delete>
+	
+</mapper>
+

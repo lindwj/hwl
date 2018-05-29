@@ -1,0 +1,273 @@
+﻿<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+PUBLIC "-//ibatis.apache.org//DTD Mapper 3.0//EN"
+"http://ibatis.apache.org/dtd/ibatis-3-mapper.dtd">
+
+
+<!-- 使用namespace的话sql搜索定位会比较方便 -->
+<mapper namespace="com.hwl.service.dao.GaccountMapper">
+
+	<resultMap id="GaccountMap" type="com.hwl.service.model.Gaccount">
+        <result property="gaccountId" column="g_account_id"/>
+        <result property="sdElectResAccId" column="sd_elect_res_acc_id"/>
+        <result property="fcaseNum" column="f_case_num"/>
+        <result property="fcaseYear" column="f_case_year"/>
+        <result property="fcode" column="f_code"/>
+        <result property="ffullCode" column="f_full_code"/>
+        <result property="fname" column="f_name"/>
+        <result property="fparent" column="f_parent"/>
+        <result property="ffullName" column="f_full_name"/>
+        <result property="flevel" column="f_level"/>
+        <result property="fisDetail" column="f_is_detail"/>
+        <result property="fdc" column="f_dc"/>
+        <result property="fcateName" column="f_cate_name"/>
+        <result property="fprojCount" column="f_proj_count"/>
+        <result property="fprojType1" column="f_proj_type1"/>
+        <result property="fprojType2" column="f_proj_type2"/>
+        <result property="fprojType3" column="f_proj_type3"/>
+        <result property="fprojType4" column="f_proj_type4"/>
+        <result property="fprojType5" column="f_proj_Type5"/>
+        <result property="fprojType6" column="f_proj_Type6"/>
+        <result property="fisUsed" column="f_is_used"/>
+        <result property="fstdCode" column="f_std_code"/>
+        <result property="fisTran" column="f_is_tran"/>
+        <result property="froot" column="f_root"/>
+	</resultMap>
+	<!-- 分页查询接口 -->
+	<select id="getGaccountListPage" parameterType="Gaccount"
+		resultMap="GaccountMap">
+		select * from g_account
+		<!-- <trim prefix="WHERE" prefixOverrides="AND | OR"> -->
+	</select>
+	<!-- 按编号查询 -->
+	<select id="getGaccountById" parameterType="int" resultMap="GaccountMap">
+		select *
+		from g_account where g_account_id = #{gaccountId}
+	</select>
+	
+	
+	
+	<!-- 添加 -->
+	<insert id="insertGaccount" parameterType="Gaccount" useGeneratedKeys="true" keyProperty="gaccountId">
+        INSERT INTO g_account (
+        	g_account_id ,
+        	sd_elect_res_acc_id ,
+        	f_case_num ,
+        	f_case_year ,
+        	f_code ,
+        	f_full_code ,
+        	f_name ,
+        	f_parent ,
+        	f_full_name ,
+        	f_level ,
+        	f_is_detail ,
+        	f_dc ,
+        	f_cate_name ,
+        	f_proj_count ,
+        	f_proj_type1 ,
+        	f_proj_type2 ,
+        	f_proj_type3 ,
+        	f_proj_type4 ,
+        	f_proj_Type5 ,
+        	f_proj_Type6 ,
+        	f_is_used ,
+        	f_std_code ,
+        	f_is_tran ,
+        	f_root 
+        ) VALUES (
+        	#{gaccountId} ,
+        	#{sdElectResAccId} ,
+        	#{fcaseNum} ,
+        	#{fcaseYear} ,
+        	#{fcode} ,
+        	#{ffullCode} ,
+        	#{fname} ,
+        	#{fparent} ,
+        	#{ffullName} ,
+        	#{flevel} ,
+        	#{fisDetail} ,
+        	#{fdc} ,
+        	#{fcateName} ,
+        	#{fprojCount} ,
+        	#{fprojType1} ,
+        	#{fprojType2} ,
+        	#{fprojType3} ,
+        	#{fprojType4} ,
+        	#{fprojType5} ,
+        	#{fprojType6} ,
+        	#{fisUsed} ,
+        	#{fstdCode} ,
+        	#{fisTran} ,
+        	#{froot} 
+        )
+	</insert>
+	
+	
+	<insert id="insertGaccountList" parameterType="Gaccount">
+        INSERT INTO g_account (
+        	sd_elect_res_acc_id ,
+        	f_case_num ,
+        	f_case_year ,
+        	f_code ,
+        	f_full_code ,
+        	f_name ,
+        	f_parent ,
+        	f_full_name ,
+        	f_level ,
+        	f_is_detail ,
+        	f_dc ,
+        	f_cate_name ,
+        	f_proj_count ,
+        	f_proj_type1 ,
+        	f_proj_type2 ,
+        	f_proj_type3 ,
+        	f_proj_type4 ,
+        	f_proj_Type5 ,
+        	f_proj_Type6 ,
+        	f_is_used ,
+        	f_std_code ,
+        	f_is_tran ,
+        	f_root 
+        ) VALUES 
+        
+        <foreach collection="list" item="item" index="index" separator="," > 
+        
+        
+         (
+        	#{item.sdElectResAccId} ,
+        	#{item.fcaseNum} ,
+        	#{item.fcaseYear} ,
+        	#{item.fcode} ,
+        	#{item.ffullCode} ,
+        	#{item.fname} ,
+        	#{item.fparent} ,
+        	#{item.ffullName} ,
+        	#{item.flevel} ,
+        	#{item.fisDetail} ,
+        	#{item.fdc} ,
+        	#{item.fcateName} ,
+        	#{item.fprojCount} ,
+        	#{item.fprojType1} ,
+        	#{item.fprojType2} ,
+        	#{item.fprojType3} ,
+        	#{item.fprojType4} ,
+        	#{item.fprojType5} ,
+        	#{item.fprojType6} ,
+        	#{item.fisUsed} ,
+        	#{item.fstdCode} ,
+        	#{item.fisTran} ,
+        	#{item.froot} 
+        )
+    </foreach>
+        
+       
+	</insert>
+	<!-- 企业会计准则 智能匹配 -->
+	<update id="batchUpdate" >
+	UPDATE g_account ga , p_tran_gl_tpl pt ,p_std_account psa  SET ga.f_std_code = pt.f_code WHERE ga.f_full_name  LIKE pt.f_name AND ga.sd_elect_res_acc_id=#{sdElectResAccId}
+	and pt.f_code = psa.f_code and psa.f_rule in (#{fRule},3)
+	</update>
+	
+	<!-- 未对应科目 执行对应其父及标准科目 -->
+	<update id="batchParentUpdate" >
+	UPDATE  g_account ga , g_account gc  SET ga.f_std_code = gc.f_std_code
+ WHERE ga.f_std_code IS  NULL AND ga.sd_elect_res_acc_id=#{sdElectResAccId} AND ga.f_parent = gc.f_code AND gc.sd_elect_res_acc_id=#{sdElectResAccId}
+	</update>
+	
+	<!-- 未对应科目 执行对应其父及的父及的标准科目 -->
+	<update id="batchParent2Update" >
+	UPDATE  g_account ga , g_account gc , g_account gd  SET ga.f_std_code = gd.f_std_code
+ WHERE ga.f_std_code IS  NULL AND ga.sd_elect_res_acc_id=#{sdElectResAccId} AND ga.f_parent = gc.f_code AND gc.sd_elect_res_acc_id=#{sdElectResAccId}
+  AND gc.f_parent = gd.f_code AND gd.sd_elect_res_acc_id=#{sdElectResAccId}
+	</update>
+	
+	
+	<!-- 未对应科目查询 -->
+	<select id="getGaccountUnMatch" parameterType="Gaccount" resultMap="GaccountMap">
+		SELECT count(1) as g_account_id FROM g_account 
+		WHERE f_std_code IS  NULL AND sd_elect_res_acc_id=#{sdElectResAccId}
+	</select>
+	
+	
+	
+	
+	
+	<!-- 修改 -->
+	<update id="updateGaccount" >
+        UPDATE g_account 
+        <trim prefix="SET" suffixOverrides=",">
+	        <if test="fcaseNum!=null and fcaseNum!=''">
+	        f_case_num = #{fcaseNum},
+	        </if>
+	        <if test="fcaseYear!=null and fcaseYear!=''">
+	        f_case_year = #{fcaseYear},
+	        </if>
+	        <if test="ffullCode!=null and ffullCode!=''">
+	        f_full_code = #{ffullCode},
+	        </if>
+	        <if test="fname!=null and fname!=''">
+	        f_name = #{fname},
+	        </if>
+	        <if test="fparent!=null and fparent!=''">
+	        f_parent = #{fparent},
+	        </if>
+	        <if test="ffullName!=null and ffullName!=''">
+	        f_full_name = #{ffullName},
+	        </if>
+	        <if test="flevel!=null and flevel!=''">
+	        f_level = #{flevel},
+	        </if>
+	        <if test="fisDetail!=null and fisDetail!=''">
+	        f_is_detail = #{fisDetail},
+	        </if>
+	        <if test="fdc!=null and fdc!=''">
+	        f_dc = #{fdc},
+	        </if>
+	        <if test="fcateName!=null and fcateName!=''">
+	        f_cate_name = #{fcateName},
+	        </if>
+	        <if test="fprojCount!=null and fprojCount!=''">
+	        f_proj_count = #{fprojCount},
+	        </if>
+	        <if test="fprojType1!=null and fprojType1!=''">
+	        f_proj_type1 = #{fprojType1},
+	        </if>
+	        <if test="fprojType2!=null and fprojType2!=''">
+	        f_proj_type2 = #{fprojType2},
+	        </if>
+	        <if test="fprojType3!=null and fprojType3!=''">
+	        f_proj_type3 = #{fprojType3},
+	        </if>
+	        <if test="fprojType4!=null and fprojType4!=''">
+	        f_proj_type4 = #{fprojType4},
+	        </if>
+	        <if test="fprojType5!=null and fprojType5!=''">
+	        f_proj_Type5 = #{fprojType5},
+	        </if>
+	        <if test="fprojType6!=null and fprojType6!=''">
+	        f_proj_Type6 = #{fprojType6},
+	        </if>
+	        <if test="fisUsed!=null and fisUsed!=''">
+	        f_is_used = #{fisUsed},
+	        </if>
+	        <if test="fstdCode!=null and fstdCode!=''">
+	        f_std_code = #{fstdCode},
+	        </if>
+	        <if test="fisTran!=null and fisTran!=''">
+	        f_is_tran = #{fisTran},
+	        </if>
+	        <if test="froot!=null and froot!=''">
+	        f_root = #{froot},
+	        </if>
+	      </trim>  
+        WHERE 
+	        sd_elect_res_acc_id = #{sdElectResAccId} and f_code = #{fcode}
+	</update>
+	<!-- 删除 -->
+	<delete id="deleteGaccount" parameterType="int">
+        UPDATE g_account set state='X' WHERE
+        g_account_id = #{gaccountId} 
+    </delete>
+	
+</mapper>
+

@@ -1,0 +1,198 @@
+﻿<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+PUBLIC "-//ibatis.apache.org//DTD Mapper 3.0//EN"
+"http://ibatis.apache.org/dtd/ibatis-3-mapper.dtd">
+
+
+<!-- 使用namespace的话sql搜索定位会比较方便 -->
+<mapper namespace="com.hwl.service.dao.SdAccountMapper">
+
+	<resultMap id="SdAccountMap" type="com.hwl.service.model.SdAccount">
+        <result property="sdAccountId" column="sd_account_id"/>
+        <result property="acctName" column="acct_name"/>
+        <result property="acctId" column="acct_id"/>
+        <result property="acctLevel" column="acct_level"/>
+        <result property="acctType" column="acct_type"/>
+        <result property="balDc" column="bal_dc"/>
+        <result property="isQtyCal" column="is_qty_cal"/>
+        <result property="qtyCalUnit" column="qty_cal_unit"/>
+        <result property="fcurUnit" column="f_cur_unit"/>
+        <result property="isAdjustRate" column="is_adjust_rate"/>
+        <result property="multiAcct" column="multi_acct"/>
+        <result property="isBankAcct" column="is_bank_acct"/>
+        <result property="isRelateFzhs" column="is_relate_fzhs"/>
+        <result property="psdAccountId" column="p_sd_account_id"/>
+        <result property="fzhsType" column="fzhs_type"/>
+        <result property="sdElectResAccId" column="sd_elect_res_acc_id"/>
+        <result property="createDate" column="create_date"/>
+	</resultMap>
+	<!-- 分页查询接口 -->
+	<select id="getSdAccountListPage" parameterType="SdAccount"
+		resultMap="SdAccountMap">
+		select * from sd_account
+		<!-- <trim prefix="WHERE" prefixOverrides="AND | OR"> -->
+	</select>
+	<!-- 按编号查询 -->
+	<select id="getSdAccountById" parameterType="int" resultMap="SdAccountMap">
+		select *
+		from sd_account where sd_account_id = #{sdAccountId}
+	</select>
+	
+	<select id="getSdAccountChild" parameterType="SdAccount" resultMap="SdAccountMap">
+		select *
+		from sd_account where  acct_level=#{acctLevel} and sd_elect_res_acc_id=#{sdElectResAccId}
+		
+		<if test="acctId!=null and acctId!=''">
+	        and acct_id like #{acctId} 
+	    </if>
+	        
+		
+	</select>
+	
+	<!-- 添加 -->
+	<insert id="insertSdAccount" parameterType="SdAccount" useGeneratedKeys="true" keyProperty="sdAccountId">
+        INSERT INTO sd_account (
+        	sd_account_id ,
+        	acct_name ,
+        	acct_id ,
+        	acct_level ,
+        	acct_type ,
+        	bal_dc ,
+        	is_qty_cal ,
+        	qty_cal_unit ,
+        	f_cur_unit ,
+        	is_adjust_rate ,
+        	multi_acct ,
+        	is_bank_acct ,
+        	is_relate_fzhs ,
+        	p_sd_account_id ,
+        	sd_elect_res_acc_id ,
+        	create_date 
+        ) VALUES (
+        	#{sdAccountId} ,
+        	#{acctName} ,
+        	#{acctId} ,
+        	#{acctLevel} ,
+        	#{acctType} ,
+        	#{balDc} ,
+        	#{isQtyCal} ,
+        	#{qtyCalUnit} ,
+        	#{fcurUnit} ,
+        	#{isAdjustRate} ,
+        	#{multiAcct} ,
+        	#{isBankAcct} ,
+        	#{isRelateFzhs} ,
+        	#{psdAccountId} ,
+        	#{sdElectResAccId} ,
+        	#{createDate} 
+        )
+	</insert>
+	
+	<!-- 批量添加 -->
+	<insert id="insertSdAccountList" parameterType="SdAccount" >
+	
+	INSERT INTO sd_account (
+        	acct_name ,
+        	acct_id ,
+        	acct_level ,
+        	acct_type ,
+        	bal_dc ,
+        	is_qty_cal ,
+        	qty_cal_unit ,
+        	f_cur_unit ,
+        	is_adjust_rate ,
+        	multi_acct ,
+        	is_bank_acct ,
+        	is_relate_fzhs ,
+        	p_sd_account_id ,
+        	fzhs_type,
+        	sd_elect_res_acc_id ,
+        	create_date 
+        ) VALUES 
+        <foreach collection="list" item="item" index="index" separator="," > 
+    (
+        	#{item.acctName} ,
+        	#{item.acctId} ,
+        	#{item.acctLevel} ,
+        	#{item.acctType} ,
+        	#{item.balDc} ,
+        	#{item.isQtyCal} ,
+        	#{item.qtyCalUnit} ,
+        	#{item.fcurUnit} ,
+        	#{item.isAdjustRate} ,
+        	#{item.multiAcct} ,
+        	#{item.isBankAcct} ,
+        	#{item.isRelateFzhs} ,
+        	#{item.psdAccountId} ,
+        	#{item.fzhsType} ,
+        	#{item.sdElectResAccId} ,
+        	now()
+        )
+    </foreach>
+        
+        
+	
+	
+	</insert>
+	
+	<!-- 修改 -->
+	<update id="updateSdAccount" >
+        UPDATE sd_account 
+        <trim prefix="SET" suffixOverrides=",">
+	        <if test="acctName!=null and acctName!=''">
+	        acct_name = #{acctName},
+	        </if>
+	        <if test="acctId!=null and acctId!=''">
+	        acct_id = #{acctId},
+	        </if>
+	        <if test="acctLevel!=null and acctLevel!=''">
+	        acct_level = #{acctLevel},
+	        </if>
+	        <if test="acctType!=null and acctType!=''">
+	        acct_type = #{acctType},
+	        </if>
+	        <if test="balDc!=null and balDc!=''">
+	        bal_dc = #{balDc},
+	        </if>
+	        <if test="isQtyCal!=null and isQtyCal!=''">
+	        is_qty_cal = #{isQtyCal},
+	        </if>
+	        <if test="qtyCalUnit!=null and qtyCalUnit!=''">
+	        qty_cal_unit = #{qtyCalUnit},
+	        </if>
+	        <if test="fcurUnit!=null and fcurUnit!=''">
+	        f_cur_unit = #{fcurUnit},
+	        </if>
+	        <if test="isAdjustRate!=null and isAdjustRate!=''">
+	        is_adjust_rate = #{isAdjustRate},
+	        </if>
+	        <if test="multiAcct!=null and multiAcct!=''">
+	        multi_acct = #{multiAcct},
+	        </if>
+	        <if test="isBankAcct!=null and isBankAcct!=''">
+	        is_bank_acct = #{isBankAcct},
+	        </if>
+	        <if test="isRelateFzhs!=null and isRelateFzhs!=''">
+	        is_relate_fzhs = #{isRelateFzhs},
+	        </if>
+	        <if test="psdAccountId!=null and psdAccountId!=''">
+	        p_sd_account_id = #{psdAccountId},
+	        </if>
+	        <if test="sdElectResAccId!=null and sdElectResAccId!=''">
+	        sd_elect_res_acc_id = #{sdElectResAccId},
+	        </if>
+	        <if test="createDate!=null and createDate!=''">
+	        create_date = #{createDate},
+	        </if>
+	      </trim>  
+        WHERE 
+	        sd_account_id = #{sdAccountId} 
+	</update>
+	<!-- 删除 -->
+	<delete id="deleteSdAccount" parameterType="int">
+        UPDATE sd_account set state='X' WHERE
+        sd_account_id = #{sdAccountId} 
+    </delete>
+	
+</mapper>
+

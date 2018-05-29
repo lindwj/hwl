@@ -1,0 +1,43 @@
+.search_table{ border-top:4px solid #79c0bb; padding:0; margin:10px 0; font-size:12px;}
+.search_table th{ background:#E3EFEC; line-height:26px; font-weight:normal; border:1px solid #ccc; border-top:none; border-left:none; text-align:left; padding:0 5px;}
+.search_table td{ border:1px solid #ccc; border-top:none; border-left:none;}
+.search_table tr:hover{ background:#fbfbf7;}
+.search_table tr td:hover{ color:#79c0bb;}
+.guest_top{ height:40px;}
+.guest_top h1{ font-size:14px; font-weight:700; float:left;}
+.guest_tab{ border-bottom:1px solid #79c0bb; height:25px;}
+.guest_tab a{ margin:0 5px 0 0;}
+.guest_tab a,.guest_tab a:visited,.guest_tab a:link{ float:left; color:#444; font-size:13px;}
+.guest_tab a:hover,.guest_tab a.current{ color:#79c0bb;}
+.guest_tab a span{ float:left;}
+.guest_tab a.current span.guest_tab_l{ background:url(../images/tab_0_0.png) no-repeat left top; width:3px; height:26px;}
+.guest_tab a.current span.guest_tab_r{ background:url(../images/tab_0_2.png) no-repeat left top; width:3px; height:26px;}
+.guest_tab a.current span.guest_tab_text{ background:url(../images/tab_0_1.png) repeat-x; height:26px; line-height:26px; padding:0 5px;}
+.guest_tab a span.guest_tab_l{ background:url(../images/tab_1_0.png) no-repeat left top; width:3px; height:26px;}
+.guest_tab a span.guest_tab_r{ background:url(../images/tab_1_2.png) no-repeat left top; width:3px; height:26px;}
+.guest_tab a span.guest_tab_text{ background:url(../images/tab_1_1.png) repeat-x; height:26px; line-height:26px; padding:0 5px;}
+.guest_layout table{margin:0 0 10px 0; border:1px solid #79c0bb; border-top:4px solid #79c0bb; background:#fff; padding:0 0 10px 0;}
+.guest_information{ width:49%; float:left;}
+.guest_needs{ width:49%; margin:0 0 0 10px; float:right;}
+.guest_layout table tr th{ background:#efefef; font-size:14px; padding:5px; font-weight:700;}
+.guest_layout table tr.guest_bg td{ background:#E3EFEC;}
+.guest_layout table.needs{ margin:0; padding:0; border-bottom:none;}
+.guest_layout table#needs1,.guest_layout table#needs2,.guest_layout table#needs3,.guest_layout table#needs4{border-top:none;}
+th.need_chance span{margin:0 0 0 20px;}
+th.need_chance span a{ margin:0 5px; color:#333;}
+th.need_chance span a:hover{ color:#79c0bb;}
+
+/*个人中心*/
+.personal_list{ float:left; width:150px;}
+.inner_top_view{ overflow:hidden; height:25px;}
+.inner_top_view h1 a{ background:url(../images/title.png) no-repeat left center; width:99px; height:25px; line-height:25px; color:#333; display:block; float:left; padding:0 0 0 10px;}
+.inner_top_view h1 a.active{ background:url(../images/title_hover.png) no-repeat left center; color:#fff;}
+.meet_table{}
+
+/*login*/
+
+.login{ background:url(../images/login_bg.jpg) no-repeat top center; background-color:#fff; width:100%; min-height:748px; min-width:960px;}
+.login_con{ width:410px; margin:0 auto; padding:275px 0 0 550px;}
+.login_input{ padding-left:40px; margin:0 0 33px 0;}
+.login_input input{ width:223px; height:39px; line-height:39px; font-size:16px; color:#999; border:none; background:none; padding:0 0 0 5px;}
+.login_input input:hover{ box-shadow:none;}

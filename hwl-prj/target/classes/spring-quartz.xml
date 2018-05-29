@@ -1,0 +1,34 @@
+<?xml version="1.0" encoding="UTF-8"?>  
+<beans xmlns="http://www.springframework.org/schema/beans"  
+       xmlns:util="http://www.springframework.org/schema/util"  
+       xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"  
+       xsi:schemaLocation="  
+       http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd  
+       http://www.springframework.org/schema/util http://www.springframework.org/schema/util/spring-util.xsd">  
+  
+<bean id="shopFinancial"
+class="org.springframework.scheduling.quartz.MethodInvokingJobDetailFactoryBean">
+<property name="targetObject">
+<bean class="com.hwl.quartzjob.ShopFinancialJop" />
+</property>
+<property name="targetMethod" value="statistics" />
+<property name="concurrent" value="false" /><!-- 作业不并发调度 -->
+</bean>
+
+
+<bean id="shopFinancialTrigger" class="org.springframework.scheduling.quartz.CronTriggerFactoryBean">
+<property name="jobDetail" ref="shopFinancial" />
+<property name="startDelay" value="0" /><!-- 调度工厂实例化后，经过0秒开始执行调度 -->
+<property name="cronExpression" value=" 0 30 0 * * ?" /><!--0 15 10 ? * * 每2秒调度一次 0 30 0 * * ? -->
+</bean>
+
+<bean class="org.springframework.scheduling.quartz.SchedulerFactoryBean">
+<property name="triggers">
+<list>
+<ref bean="shopFinancialTrigger" />
+</list>
+</property>
+</bean>
+
+  
+</beans>

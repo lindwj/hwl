@@ -1,0 +1,162 @@
+﻿<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+PUBLIC "-//ibatis.apache.org//DTD Mapper 3.0//EN"
+"http://ibatis.apache.org/dtd/ibatis-3-mapper.dtd">
+
+
+<!-- 使用namespace的话sql搜索定位会比较方便 -->
+<mapper namespace="com.hwl.service.dao.SdEmployeeMapper">
+
+	<resultMap id="SdEmployeeMap" type="com.hwl.service.model.SdEmployee">
+        <result property="sdEmployeeId" column="sd_employee_id"/>
+        <result property="sdUserItemId" column="sd_user_item_id"/>
+        <result property="personNo" column="person_no"/>
+        <result property="personName" column="person_name"/>
+        <result property="cardType" column="card_type"/>
+        <result property="cardId" column="card_id"/>
+        <result property="sex" column="sex"/>
+        <result property="birthday" column="birthday"/>
+        <result property="deptNo" column="dept_no"/>
+        <result property="hiredate" column="hiredate"/>
+        <result property="leaveDate" column="leave_date"/>
+        <result property="createDate" column="create_date"/>
+        <result property="sdElectResAccId" column="sd_elect_res_acc_id"/>
+	</resultMap>
+	<!-- 分页查询接口 -->
+	<select id="getSdEmployeeListPage" parameterType="SdEmployee"
+		resultMap="SdEmployeeMap">
+		select * from sd_employee
+		<!-- <trim prefix="WHERE" prefixOverrides="AND | OR"> -->
+	</select>
+	<!-- 按编号查询 -->
+	<select id="getSdEmployeeById" parameterType="int" resultMap="SdEmployeeMap">
+		select *
+		from sd_employee where sd_employee_id = #{sdEmployeeId}
+	</select>
+	<!-- 添加 -->
+	<insert id="insertSdEmployee" parameterType="SdEmployee" useGeneratedKeys="true" keyProperty="sdEmployeeId">
+        INSERT INTO sd_employee (
+        	sd_employee_id ,
+        	sd_user_item_id ,
+        	person_no ,
+        	person_name ,
+        	card_type ,
+        	card_id ,
+        	sex ,
+        	birthday ,
+        	dept_no ,
+        	hiredate ,
+        	leave_date ,
+        	create_date ,
+        	sd_elect_res_acc_id 
+        ) VALUES (
+        	#{sdEmployeeId} ,
+        	#{sdUserItemId} ,
+        	#{personNo} ,
+        	#{personName} ,
+        	#{cardType} ,
+        	#{cardId} ,
+        	#{sex} ,
+        	#{birthday} ,
+        	#{deptNo} ,
+        	#{hiredate} ,
+        	#{leaveDate} ,
+        	#{createDate} ,
+        	#{sdElectResAccId} 
+        )
+	</insert>
+	
+	<!-- 添加 -->
+	<insert id="insertSdEmployeeList" parameterType="SdEmployee">
+        INSERT INTO sd_employee (
+        	sd_user_item_id ,
+        	person_no ,
+        	person_name ,
+        	card_type ,
+        	card_id ,
+        	sex ,
+        	birthday ,
+        	dept_no ,
+        	hiredate ,
+        	leave_date ,
+        	create_date ,
+        	sd_elect_res_acc_id 
+        ) VALUES 
+        
+        <foreach collection="list" item="item" index="index" separator="," > 
+       
+        
+        (
+        	#{item.sdUserItemId} ,
+        	#{item.personNo} ,
+        	#{item.personName} ,
+        	#{item.cardType} ,
+        	#{item.cardId} ,
+        	#{item.sex} ,
+        	#{item.birthdayStr} ,
+        	#{item.deptNo} ,
+        	#{item.hiredateStr} ,
+        	#{item.leaveDateStr} ,
+        	now(),
+        	#{item.sdElectResAccId} 
+        )
+    </foreach>
+        
+        
+	</insert>
+	
+	
+    
+    
+	<!-- 修改 -->
+	<update id="updateSdEmployee" >
+        UPDATE sd_employee 
+        <trim prefix="SET" suffixOverrides=",">
+	        <if test="sdUserItemId!=null and sdUserItemId!=''">
+	        sd_user_item_id = #{sdUserItemId},
+	        </if>
+	        <if test="personNo!=null and personNo!=''">
+	        person_no = #{personNo},
+	        </if>
+	        <if test="personName!=null and personName!=''">
+	        person_name = #{personName},
+	        </if>
+	        <if test="cardType!=null and cardType!=''">
+	        card_type = #{cardType},
+	        </if>
+	        <if test="cardId!=null and cardId!=''">
+	        card_id = #{cardId},
+	        </if>
+	        <if test="sex!=null and sex!=''">
+	        sex = #{sex},
+	        </if>
+	        <if test="birthday!=null and birthday!=''">
+	        birthday = #{birthday},
+	        </if>
+	        <if test="deptNo!=null and deptNo!=''">
+	        dept_no = #{deptNo},
+	        </if>
+	        <if test="hiredate!=null and hiredate!=''">
+	        hiredate = #{hiredate},
+	        </if>
+	        <if test="leaveDate!=null and leaveDate!=''">
+	        leave_date = #{leaveDate},
+	        </if>
+	        <if test="createDate!=null and createDate!=''">
+	        create_date = #{createDate},
+	        </if>
+	        <if test="sdElectResAccId!=null and sdElectResAccId!=''">
+	        sd_elect_res_acc_id = #{sdElectResAccId},
+	        </if>
+	      </trim>  
+        WHERE 
+	        sd_employee_id = #{sdEmployeeId} 
+	</update>
+	<!-- 删除 -->
+	<delete id="deleteSdEmployee" parameterType="int">
+        UPDATE sd_employee set state='X' WHERE
+        sd_employee_id = #{sdEmployeeId} 
+    </delete>
+	
+</mapper>
+

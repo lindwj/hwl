@@ -1,0 +1,453 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+
+    <meta charset="UTF-8">
+    <!--<link rel="icon" href="/static/images/favicon.ico?v=1" type="image/x-icon"/>-->
+    <title>商品管理</title>
+    <link rel="icon" href="images/logo.png" />
+    <link href="common/reset.css" rel="stylesheet" type="text/css"/>
+    <link href="index/index.css" rel="stylesheet" type="text/css"/>
+    <link type="text/css" rel="stylesheet" href="common/iconfont.css"/>
+
+
+</head>
+<body>
+<div id="frame-mask" style="width: 100%; left: 0px; top: 0px; height: 100%; position: fixed;-webkit-user-select: none; z-index: 20000;" class="dialog-mask display-none"></div>
+
+<div class="container">
+
+        <div class="nav-global" style="">
+                <div class="global-logo">
+                    <img class="global-logo-img" src="images/logo3.png">
+                    <h1 class="global-logo-title">北大荒生态食品</h1>
+                </div>
+
+                <div class="items-inner">
+                    <ul class="global-items">
+                        <li class="nav-item">
+                            <a class="nav-item-inner" href="">
+                                <!--<span class="with-animation fa fa-insight"></span>-->
+                                <span class="nav-text">订单查询</span></a>
+                        </li>
+
+                        <li class="nav-item">
+                            <a class="nav-item-inner" href="#">
+                                <!--<span class="fa fa-notifications fa-has-unread"></span>-->
+                                <span class="nav-text">产品采购</span>
+                            </a>
+                        </li>
+
+                        <li class="nav-item">
+                            <a class="nav-item-inner" href="#">
+                                <!--<span class="user-avatar" href="#"></span>-->
+                                <span class="user-name">administrator</span>
+                                <!--<span class="user-verify-new-dot"></span>-->
+                            </a>
+
+                        </li>
+
+                    </ul>
+                </div>
+        </div>
+
+
+        <div class="nav-zone" style="">
+            <div class="nav-zone-inner">
+
+                <div class="zone-items">
+                    <!--<h5>功能菜单</h5>-->
+                    <ul>
+
+                        <li class="control">
+                            <a href="">
+                                <div>
+                                    <span class="text"><i class="iconfont menuicon">&#xe603;</i>街道管理</span>
+                                </div>
+                            </a>
+                        </li>
+
+                        <li>
+                            <a href="">
+                                <span class="text"><i class="iconfont menuicon">&#xe604;</i>专营店管理</span>
+                            </a>
+                        </li>
+
+                        <li class="selected">
+                            <a href="">
+                                <span class="text"><i class="iconfont menuicon">&#xe606;</i>商品管理</span>
+                            </a>
+                        </li>
+
+                        <li class="cate has-items">
+                            <a href="">
+                                <span class="text"><i class="iconfont menuicon">&#xe602;</i>账号管理</span>
+                            </a>
+                        </li>
+
+                        <li class="cate has-items">
+                            <a href="">
+                                <span class="text"><i class="iconfont menuicon">&#xe605;</i>banner管理</span>
+                            </a>
+                        </li>
+
+                    </ul>
+
+                </div>
+
+            </div>
+        </div>
+
+        <div class="content">
+
+            <div class="content-title">商品管理</div>
+
+            <div class="search">
+
+                <label class="search-label">类型：</label>
+                <select id="item-type" name="item-type" class="select-default">
+                    <option value="">选择类型</option>
+                    <option value="1">大米</option>
+                    <option value="2">杂粮</option>
+                    <option value="3">葡萄酒</option>
+
+                </select>
+                <label class="search-label">名称：</label>
+                <input id="item-name" name="item-name" type="text" placeholder="输入名称" class="input-default">
+
+                <label class="search-label">状态：</label>
+                <select id="item-status" name="item-status" class="select-default">
+                    <option value="">选择状态</option>
+                    <option value="1">已上架</option>
+                    <option value="2">未上架</option>
+                    <option value="3">已删除</option>
+
+                </select>
+                <button type="button" class="btn-default">搜索</button>
+                <button type="button" class="btn-default item-add" id="btn-add">新增商品</button>
+
+
+            </div>
+
+            <div class="content-main">
+                <form>
+                    <table class="table">
+                        <thead>
+                        <tr>
+                            <th class="col1"></th>
+                            <th class="col2">标题</th>
+                            <th class="col3">销售价</th>
+                            <th class="col4">促销价</th>
+                            <th class="col5">编号</th>
+                            <th class="col6">顺序码</th>
+                            <th class="col7">类型</th>
+                            <th class="col8">状态</th>
+                            <th class="text-right">数据修改</th>
+                        </tr>
+
+                        </thead>
+                        <tbody>
+                            <tr>
+                                <td>
+                                    <input type="checkbox" name="ckbox" category="national" value="S20160308480869">
+                                </td>
+                                <td><a class="producttitle" href="">粮宝宝 五常大米稻花香新米8KG</a></td>
+                                <td>100</td>
+                                <td>88</td>
+                                <td>DM010001</td>
+                                <td>1</td>
+                                <td>大米</td>
+                                <td>已上架</td>
+                                <td class="text-right">
+                                    <a class="content-link">主数据</a><span class="text-explode">|</span>
+                                    <a class="content-link">规格</a><span class="text-explode">|</span>
+                                    <a class="content-link">图片</a>
+
+                                </td>
+                            </tr>
+                            <tr>
+                                <td>
+                                    <input type="checkbox" name="ckbox" category="national" value="S20160308480869">
+                                </td>
+                                <td><a href="">粮宝宝 五常大米稻花香新米8KG</a></td>
+                                <td>100</td>
+                                <td>88</td>
+                                <td>DM010001</td>
+                                <td>1</td>
+                                <td>大米</td>
+                                <td>已上架</td>
+                                <td class="text-right">
+                                    <a class="content-link">主数据</a><span class="text-explode">|</span>
+                                    <a class="content-link">规格</a><span class="text-explode">|</span>
+                                    <a class="content-link">图片</a>
+
+                                </td>
+                            </tr>
+                            <tr>
+                                <td>
+                                    <input type="checkbox" name="ckbox" category="national" value="S20160308480869">
+                                </td>
+                                <td>粮宝宝 五常大米稻花香新米8KG</td>
+                                <td>100</td>
+                                <td>88</td>
+                                <td>DM010001</td>
+                                <td>1</td>
+                                <td>大米</td>
+                                <td>已上架</td>
+                                <td class="text-right">
+                                    <a class="content-link">主数据</a><span class="text-explode">|</span>
+                                    <a class="content-link">规格</a><span class="text-explode">|</span>
+                                    <a class="content-link">图片</a>
+
+                                </td>
+                            </tr>
+                            <tr>
+                                <td>
+                                    <input type="checkbox" name="ckbox" category="national" value="S20160308480869">
+                                </td>
+                                <td>粮宝宝 五常大米稻花香新米8KG</td>
+                                <td>100</td>
+                                <td>88</td>
+                                <td>DM010001</td>
+                                <td>1</td>
+                                <td>大米</td>
+                                <td>已上架</td>
+                                <td class="text-right">
+                                    <a class="content-link">主数据</a><span class="text-explode">|</span>
+                                    <a class="content-link">规格</a><span class="text-explode">|</span>
+                                    <a class="content-link">图片</a>
+
+                                </td>
+                            </tr>
+                            <tr>
+                                <td>
+                                    <input type="checkbox" name="ckbox" category="national" value="S20160308480869">
+                                </td>
+                                <td>粮宝宝 五常大米稻花香新米8KG</td>
+                                <td>100</td>
+                                <td>88</td>
+                                <td>DM010001</td>
+                                <td>1</td>
+                                <td>大米</td>
+                                <td>已上架</td>
+                                <td class="text-right">
+                                    <a class="content-link">主数据</a><span class="text-explode">|</span>
+                                    <a class="content-link">规格</a><span class="text-explode">|</span>
+                                    <a class="content-link">图片</a>
+
+                                </td>
+                            </tr>
+                            <tr>
+                                <td>
+                                    <input type="checkbox" name="ckbox" category="national" value="S20160308480869">
+                                </td>
+                                <td>粮宝宝 五常大米稻花香新米8KG</td>
+                                <td>100</td>
+                                <td>88</td>
+                                <td>DM010001</td>
+                                <td>1</td>
+                                <td>大米</td>
+                                <td>已上架</td>
+                                <td class="text-right">
+                                    <a class="content-link">主数据</a><span class="text-explode">|</span>
+                                    <a class="content-link">规格</a><span class="text-explode">|</span>
+                                    <a class="content-link">图片</a>
+
+                                </td>
+                            </tr>
+                            <tr>
+                                <td>
+                                    <input type="checkbox" name="ckbox" category="national" value="S20160308480869">
+                                </td>
+                                <td>粮宝宝 五常大米稻花香新米8KG</td>
+                                <td>100</td>
+                                <td>88</td>
+                                <td>DM010001</td>
+                                <td>1</td>
+                                <td>大米</td>
+                                <td>已上架</td>
+                                <td class="text-right">
+                                    <a class="content-link">主数据</a><span class="text-explode">|</span>
+                                    <a class="content-link">规格</a><span class="text-explode">|</span>
+                                    <a class="content-link">图片</a>
+
+                                </td>
+                            </tr>
+                            <tr>
+                                <td>
+                                    <input type="checkbox" name="ckbox" category="national" value="S20160308480869">
+                                </td>
+                                <td>粮宝宝 五常大米稻花香新米8KG</td>
+                                <td>100</td>
+                                <td>88</td>
+                                <td>DM010001</td>
+                                <td>1</td>
+                                <td>大米</td>
+                                <td>已上架</td>
+                                <td class="text-right">
+                                    <a class="content-link">主数据</a><span class="text-explode">|</span>
+                                    <a class="content-link">规格</a><span class="text-explode">|</span>
+                                    <a class="content-link">图片</a>
+
+                                </td>
+                            </tr>
+                        </tbody>
+                        <tfoot>
+                            <tr>
+                                <td>
+                                </td>
+                                <td colspan="8">
+
+                                    <div class="pull-left">
+                                        <button id="renew" type="button" class="btn-default">商品上架
+                                        </button>
+                                        <button id="transferID" type="button" class="btn-default">商品下架
+                                        </button>
+                                    </div>
+                                    <div class="pull-right page-box">
+                                        <div class="pagination-info">共有4条，每页显示：10条</div>
+                                        <div class="pagination">
+                                            <span><a>«</a></span><span><a>‹</a></span><span><a>1</a></span><span><a>›</a></span><span><a>»</a></span>
+                                        </div>
+                                        <div class="pagination-goto">
+                                            <input type="text" class="input-default" id="gotoPageNo" style="width:40px;">
+                                            <button type="button" class="btn btn-default" id="goBtn">GO</button>
+                                            <input type="hidden" id="totalCount" name="totalCount" value="4">
+                                        </div>
+                                    </div>
+                                </td>
+                            </tr>
+                        </tfoot>
+                    </table>
+                    <input type="hidden" name="_ww_csrf_token" value="2968c417-0d6b-4026-8fee-f3c11219ba0e">
+                </form>
+
+
+            </div>
+            <div></div>
+
+
+        </div>
+
+</div>
+
+<div class="dialog display-none" id="addr-frame">
+    <div class="dialog-content">
+        <a id="dialog-close" class="dialog-close" role="button">
+            <span class="dialog-close-x">close</span>
+        </a>
+        <div class="dialog-title"><h3>商品增加</h3></div>
+        <div class="dialog-content">
+
+            <div class="dialog-item-master">
+                <div>
+                    <span>
+                        <label class="search-label">标题：</label>
+                        <input  type="text" placeholder="输入名称" class="input-default" style="width: 300px">
+                    </span>
+                    <span>
+                        <label class="search-label">类型：</label>
+                        <select class="select-default">
+                            <option value="">选择类型</option>
+                            <option value="1">大米</option>
+                            <option value="2">杂粮</option>
+                            <option value="3">葡萄酒</option>
+                        </select>
+                    </span>
+                    <span>
+                        <label class="search-label">顺序码：</label>
+                        <input  type="text"  class="input-default" style="width: 40px">
+                    </span>
+                    <span>
+                        <label class="search-label" >销售价：</label>
+                        <input  type="text"  class="input-default" style="width: 60px">
+                    </span>
+                    <span>
+                        <label class="search-label">促销价：</label>
+                        <input  type="text"  class="input-default" style="width: 60px">
+                    </span>
+                </div>
+                <div>
+                    <span>
+                        <label class="search-label">卖点：</label>
+                        <input  type="text"  class="input-default" style="width: 300px">
+                    </span>
+                    <span>
+                        <label class="search-label">属性：</label>
+                        <input  type="text"  class="input-default" style="width: 80px">
+                        <input  type="text"  class="input-default" style="width: 80px">
+                        <input  type="text"  class="input-default" style="width: 80px">
+                    </span>
+                </div>
+            </div>
+
+            <div class="dialog-item-specs">
+                <span>
+                    <label class="search-label">生产许可证号：</label>
+                    <input  type="text" class="input-default" style="width: 100px">
+                </span>
+                <span>
+                    <label class="search-label">生产标准号：</label>
+                    <input  type="text" class="input-default" style="width: 100px">
+                </span>
+                <span>
+                    <label class="search-label">保质期：</label>
+                    <input  type="text" class="input-default" style="width: 40px">
+                </span>
+                <span>
+                    <label class="search-label">产地：</label>
+                    <input  type="text" class="input-default" style="width: 80px">
+                </span>
+                <span>
+                    <label class="search-label">品牌：</label>
+                    <input  type="text" class="input-default" style="width: 80px">
+                </span>
+                <span>
+                    <label class="search-label">净含量：</label>
+                    <input  type="text" class="input-default" style="width: 50px">
+                </span>
+
+            </div>
+            <div class="dialog-item-pic">
+
+                <div>
+                    <span>
+                        <label class="search-label">首页图片：</label>
+                        <input  type="text" class="input-default" style="width: 300px">
+                    </span>
+                </div>
+                <div>
+                    <span><label class="search-label">橱窗图片1：</label><input  type="text" class="input-default" style="width: 330px"></span>
+                    <span><label class="search-label">橱窗图片2：</label><input  type="text" class="input-default" style="width: 330px"></span>
+                    <br>
+                    <span><label class="search-label">橱窗图片3：</label><input  type="text" class="input-default" style="width: 330px"></span>
+                    <span><label class="search-label">橱窗图片4：</label><input  type="text" class="input-default" style="width: 330px"></span>
+                    <br>
+                    <span><label class="search-label">橱窗图片5：</label><input  type="text" class="input-default" style="width: 330px"></span>
+                </div>
+                <div>
+                    <span><label class="search-label">详情图1：</label><input  type="text" class="input-default" style="width: 330px"></span>
+                    <span><label class="search-label">详情图1：</label><input  type="text" class="input-default" style="width: 330px"></span>
+
+                </div>
+            </div>
+
+
+
+            <div class="def-address">
+                <button type="submit" class="btn-default" id="submit-btn">保存</button>
+            </div>
+
+        </div>
+
+
+    </div>
+
+</div>
+
+
+<script src="common/jquery-3.0.0.min.js"></script>
+<script src="index/index.js"></script>
+
+</body>
+</html>

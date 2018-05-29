@@ -1,0 +1,431 @@
+﻿<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+PUBLIC "-//ibatis.apache.org//DTD Mapper 3.0//EN"
+"http://ibatis.apache.org/dtd/ibatis-3-mapper.dtd">
+
+
+<!-- 使用namespace的话sql搜索定位会比较方便 -->
+<mapper namespace="com.hwl.service.dao.SdVoucherMapper">
+
+	<resultMap id="SdVoucherMap" type="com.hwl.service.model.SdVoucher">
+        <result property="sdVoucherId" column="sd_voucher_id"/>
+        <result property="vchDate" column="vch_date"/>
+        <result property="fyear" column="f_year"/>
+        <result property="perdNumber" column="perd_number"/>
+        <result property="vchTypeNo" column="vch_type_no"/>
+        <result property="vchTypeName" column="vch_type_name"/>
+        <result property="vchNo" column="vch_no"/>
+        <result property="attachMents" column="attach_ments"/>
+        <result property="billerName" column="biller_name"/>
+        <result property="billerNo" column="biller_no"/>
+        <result property="checkerName" column="checker_name"/>
+        <result property="checkerNo" column="checker_no"/>
+        <result property="posterName" column="poster_name"/>
+        <result property="fposterNo" column="fposter_no"/>
+        <result property="vchFlag" column="vch_flag"/>
+        <result property="cancelFlag" column="cancel_flag"/>
+        <result property="vchSource" column="vch_source"/>
+        <result property="ctotalAmount" column="c_total_amount"/>
+        <result property="dtotalAmount" column="d_total_amount"/>
+        <result property="vchRowId" column="vch_row_id"/>
+        <result property="vchInfo" column="vch_info"/>
+        <result property="acctName" column="acct_name"/>
+        <result property="acctId" column="acct_id"/>
+        <result property="curNo" column="cur_no"/>
+        <result property="curName" column="cur_name"/>
+        <result property="rateTypeNo" column="rate_type_no"/>
+        <result property="rateTypeName" column="rate_type_name"/>
+        <result property="rate" column="rate"/>
+        <result property="unitId" column="unit_id"/>
+        <result property="price" column="price"/>
+        <result property="damountS" column="d_amount_s"/>
+        <result property="damountN" column="d_amount_n"/>
+        <result property="camountS" column="c_amount_s"/>
+        <result property="camountN" column="c_amount_n"/>
+        <result property="dqty" column="d_qty"/>
+        <result property="cqty" column="c_qty"/>
+        <result property="ssCode" column="ss_code"/>
+        <result property="ssName" column="ss_name"/>
+        <result property="billType" column="bill_type"/>
+        <result property="billNo" column="bill_no"/>
+        <result property="billDate" column="bill_date"/>
+        <result property="fzhsInfo" column="fzhs_info"/>
+        <result property="cashFlowInfo" column="cash_flow_info"/>
+        <result property="isRelateXjll" column="is_relate_xjll"/>
+        <result property="isRelateFzhs" column="is_relate_fzhs"/>
+        <result property="sdElectResAccId" column="sd_elect_res_acc_id"/>
+        <result property="createDate" column="create_date"/>
+	</resultMap>
+	<!-- 分页查询接口 -->
+	<select id="getSdVoucherListPage" parameterType="SdVoucher"
+		resultMap="SdVoucherMap">
+		select * from sd_voucher
+		<!-- <trim prefix="WHERE" prefixOverrides="AND | OR"> -->
+	</select>
+	<!-- 按编号查询 -->
+	<select id="getSdVoucherById" parameterType="int" resultMap="SdVoucherMap">
+		select *
+		from sd_voucher where sd_voucher_id = #{sdVoucherId}
+	</select>
+	<!-- 添加 -->
+	<insert id="insertSdVoucher" parameterType="SdVoucher" useGeneratedKeys="true" keyProperty="sdVoucherId">
+        INSERT INTO sd_voucher (
+        	sd_voucher_id ,
+        	vch_date ,
+        	f_year ,
+        	perd_number ,
+        	vch_type_no ,
+        	vch_type_name ,
+        	vch_no ,
+        	attach_ments ,
+        	biller_name ,
+        	biller_no ,
+        	checker_name ,
+        	checker_no ,
+        	poster_name ,
+        	fposter_no ,
+        	vch_flag ,
+        	cancel_flag ,
+        	vch_source ,
+        	c_total_amount ,
+        	d_total_amount ,
+        	vch_row_id ,
+        	vch_info ,
+        	acct_name ,
+        	acct_id ,
+        	cur_no ,
+        	cur_name ,
+        	rate_type_no ,
+        	rate_type_name ,
+        	rate ,
+        	unit_id ,
+        	price ,
+        	d_amount_s ,
+        	d_amount_n ,
+        	c_amount_s ,
+        	c_amount_n ,
+        	d_qty ,
+        	c_qty ,
+        	ss_code ,
+        	ss_name ,
+        	bill_type ,
+        	bill_no ,
+        	bill_date ,
+        	fzhs_info ,
+        	cash_flow_info ,
+        	is_relate_xjll ,
+        	is_relate_fzhs ,
+        	sd_elect_res_acc_id ,
+        	create_date 
+        ) VALUES (
+        	#{sdVoucherId} ,
+        	#{vchDate} ,
+        	#{fyear} ,
+        	#{perdNumber} ,
+        	#{vchTypeNo} ,
+        	#{vchTypeName} ,
+        	#{vchNo} ,
+        	#{attachMents} ,
+        	#{billerName} ,
+        	#{billerNo} ,
+        	#{checkerName} ,
+        	#{checkerNo} ,
+        	#{posterName} ,
+        	#{fposterNo} ,
+        	#{vchFlag} ,
+        	#{cancelFlag} ,
+        	#{vchSource} ,
+        	#{ctotalAmount} ,
+        	#{dtotalAmount} ,
+        	#{vchRowId} ,
+        	#{vchInfo} ,
+        	#{acctName} ,
+        	#{acctId} ,
+        	#{curNo} ,
+        	#{curName} ,
+        	#{rateTypeNo} ,
+        	#{rateTypeName} ,
+        	#{rate} ,
+        	#{unitId} ,
+        	#{price} ,
+        	#{damountS} ,
+        	#{damountN} ,
+        	#{camountS} ,
+        	#{camountN} ,
+        	#{dqty} ,
+        	#{cqty} ,
+        	#{ssCode} ,
+        	#{ssName} ,
+        	#{billType} ,
+        	#{billNo} ,
+        	#{billDate} ,
+        	#{fzhsInfo} ,
+        	#{cashFlowInfo} ,
+        	#{isRelateXjll} ,
+        	#{isRelateFzhs} ,
+        	#{sdElectResAccId} ,
+        	#{createDate} 
+        )
+	</insert>
+	
+	
+	<!-- 添加 -->
+	<insert id="insertSdVoucherList" parameterType="SdVoucher" >
+        INSERT INTO sd_voucher (
+        	vch_date ,
+        	f_year ,
+        	perd_number ,
+        	vch_type_no ,
+        	vch_type_name ,
+        	vch_no ,
+        	attach_ments ,
+        	biller_name ,
+        	biller_no ,
+        	checker_name ,
+        	checker_no ,
+        	poster_name ,
+        	fposter_no ,
+        	vch_flag ,
+        	cancel_flag ,
+        	vch_source ,
+        	c_total_amount ,
+        	d_total_amount ,
+        	vch_row_id ,
+        	vch_info ,
+        	acct_name ,
+        	acct_id ,
+        	cur_no ,
+        	cur_name ,
+        	rate_type_no ,
+        	rate_type_name ,
+        	rate ,
+        	unit_id ,
+        	price ,
+        	d_amount_s ,
+        	d_amount_n ,
+        	c_amount_s ,
+        	c_amount_n ,
+        	d_qty ,
+        	c_qty ,
+        	ss_code ,
+        	ss_name ,
+        	bill_type ,
+        	bill_no ,
+        	bill_date ,
+        	fzhs_info ,
+        	cash_flow_info ,
+        	is_relate_xjll ,
+        	is_relate_fzhs ,
+        	sd_elect_res_acc_id ,
+        	create_date 
+        ) VALUES 
+        
+        <foreach collection="list" item="item" index="index" separator="," > 
+         
+        (
+        	#{item.vchDateStr} ,
+        	#{item.fyear} ,
+        	#{item.perdNumber} ,
+        	#{item.vchTypeNo} ,
+        	#{item.vchTypeName} ,
+        	#{item.vchNo} ,
+        	#{item.attachMents} ,
+        	#{item.billerName} ,
+        	#{item.billerNo} ,
+        	#{item.checkerName} ,
+        	#{item.checkerNo} ,
+        	#{item.posterName} ,
+        	#{item.fposterNo} ,
+        	#{item.vchFlag} ,
+        	#{item.cancelFlag} ,
+        	#{item.vchSource} ,
+        	#{item.ctotalAmount} ,
+        	#{item.dtotalAmount} ,
+        	#{item.vchRowId} ,
+        	#{item.vchInfo} ,
+        	#{item.acctName} ,
+        	#{item.acctId} ,
+        	#{item.curNo} ,
+        	#{item.curName} ,
+        	#{item.rateTypeNo} ,
+        	#{item.rateTypeName} ,
+        	#{item.rate} ,
+        	#{item.unitId} ,
+        	#{item.price} ,
+        	#{item.damountS} ,
+        	#{item.damountN} ,
+        	#{item.camountS} ,
+        	#{item.camountN} ,
+        	#{item.dqty} ,
+        	#{item.cqty} ,
+        	#{item.ssCode} ,
+        	#{item.ssName} ,
+        	#{item.billType} ,
+        	#{item.billNo} ,
+        	#{item.billDateStr} ,
+        	#{item.fzhsInfo} ,
+        	#{item.cashFlowInfo} ,
+        	#{item.isRelateXjll} ,
+        	#{item.isRelateFzhs} ,
+        	#{item.sdElectResAccId} ,
+        	now()
+        )
+    </foreach>
+       
+	</insert>
+	
+	
+	<!-- 修改 -->
+	<update id="updateSdVoucher" >
+        UPDATE sd_voucher 
+        <trim prefix="SET" suffixOverrides=",">
+	        <if test="vchDate!=null and vchDate!=''">
+	        vch_date = #{vchDate},
+	        </if>
+	        <if test="fyear!=null and fyear!=''">
+	        f_year = #{fyear},
+	        </if>
+	        <if test="perdNumber!=null and perdNumber!=''">
+	        perd_number = #{perdNumber},
+	        </if>
+	        <if test="vchTypeNo!=null and vchTypeNo!=''">
+	        vch_type_no = #{vchTypeNo},
+	        </if>
+	        <if test="vchTypeName!=null and vchTypeName!=''">
+	        vch_type_name = #{vchTypeName},
+	        </if>
+	        <if test="vchNo!=null and vchNo!=''">
+	        vch_no = #{vchNo},
+	        </if>
+	        <if test="attachMents!=null and attachMents!=''">
+	        attach_ments = #{attachMents},
+	        </if>
+	        <if test="billerName!=null and billerName!=''">
+	        biller_name = #{billerName},
+	        </if>
+	        <if test="billerNo!=null and billerNo!=''">
+	        biller_no = #{billerNo},
+	        </if>
+	        <if test="checkerName!=null and checkerName!=''">
+	        checker_name = #{checkerName},
+	        </if>
+	        <if test="checkerNo!=null and checkerNo!=''">
+	        checker_no = #{checkerNo},
+	        </if>
+	        <if test="posterName!=null and posterName!=''">
+	        poster_name = #{posterName},
+	        </if>
+	        <if test="fposterNo!=null and fposterNo!=''">
+	        fposter_no = #{fposterNo},
+	        </if>
+	        <if test="vchFlag!=null and vchFlag!=''">
+	        vch_flag = #{vchFlag},
+	        </if>
+	        <if test="cancelFlag!=null and cancelFlag!=''">
+	        cancel_flag = #{cancelFlag},
+	        </if>
+	        <if test="vchSource!=null and vchSource!=''">
+	        vch_source = #{vchSource},
+	        </if>
+	        <if test="ctotalAmount!=null and ctotalAmount!=''">
+	        c_total_amount = #{ctotalAmount},
+	        </if>
+	        <if test="dtotalAmount!=null and dtotalAmount!=''">
+	        d_total_amount = #{dtotalAmount},
+	        </if>
+	        <if test="vchRowId!=null and vchRowId!=''">
+	        vch_row_id = #{vchRowId},
+	        </if>
+	        <if test="vchInfo!=null and vchInfo!=''">
+	        vch_info = #{vchInfo},
+	        </if>
+	        <if test="acctName!=null and acctName!=''">
+	        acct_name = #{acctName},
+	        </if>
+	        <if test="acctId!=null and acctId!=''">
+	        acct_id = #{acctId},
+	        </if>
+	        <if test="curNo!=null and curNo!=''">
+	        cur_no = #{curNo},
+	        </if>
+	        <if test="curName!=null and curName!=''">
+	        cur_name = #{curName},
+	        </if>
+	        <if test="rateTypeNo!=null and rateTypeNo!=''">
+	        rate_type_no = #{rateTypeNo},
+	        </if>
+	        <if test="rateTypeName!=null and rateTypeName!=''">
+	        rate_type_name = #{rateTypeName},
+	        </if>
+	        <if test="rate!=null and rate!=''">
+	        rate = #{rate},
+	        </if>
+	        <if test="unitId!=null and unitId!=''">
+	        unit_id = #{unitId},
+	        </if>
+	        <if test="price!=null and price!=''">
+	        price = #{price},
+	        </if>
+	        <if test="damountS!=null and damountS!=''">
+	        d_amount_s = #{damountS},
+	        </if>
+	        <if test="damountN!=null and damountN!=''">
+	        d_amount_n = #{damountN},
+	        </if>
+	        <if test="camountS!=null and camountS!=''">
+	        c_amount_s = #{camountS},
+	        </if>
+	        <if test="camountN!=null and camountN!=''">
+	        c_amount_n = #{camountN},
+	        </if>
+	        <if test="dqty!=null and dqty!=''">
+	        d_qty = #{dqty},
+	        </if>
+	        <if test="cqty!=null and cqty!=''">
+	        c_qty = #{cqty},
+	        </if>
+	        <if test="ssCode!=null and ssCode!=''">
+	        ss_code = #{ssCode},
+	        </if>
+	        <if test="ssName!=null and ssName!=''">
+	        ss_name = #{ssName},
+	        </if>
+	        <if test="billType!=null and billType!=''">
+	        bill_type = #{billType},
+	        </if>
+	        <if test="billNo!=null and billNo!=''">
+	        bill_no = #{billNo},
+	        </if>
+	        <if test="billDate!=null and billDate!=''">
+	        bill_date = #{billDate},
+	        </if>
+	        <if test="fzhsInfo!=null and fzhsInfo!=''">
+	        fzhs_info = #{fzhsInfo},
+	        </if>
+	        <if test="cashFlowInfo!=null and cashFlowInfo!=''">
+	        cash_flow_info = #{cashFlowInfo},
+	        </if>
+	        <if test="isRelateXjll!=null and isRelateXjll!=''">
+	        is_relate_xjll = #{isRelateXjll},
+	        </if>
+	        <if test="isRelateFzhs!=null and isRelateFzhs!=''">
+	        is_relate_fzhs = #{isRelateFzhs},
+	        </if>
+	        <if test="sdElectResAccId!=null and sdElectResAccId!=''">
+	        sd_elect_res_acc_id = #{sdElectResAccId},
+	        </if>
+	        <if test="createDate!=null and createDate!=''">
+	        create_date = #{createDate},
+	        </if>
+	      </trim>  
+        WHERE 
+	        sd_voucher_id = #{sdVoucherId} 
+	</update>
+	<!-- 删除 -->
+	<delete id="deleteSdVoucher" parameterType="int">
+        UPDATE sd_voucher set state='X' WHERE
+        sd_voucher_id = #{sdVoucherId} 
+    </delete>
+	
+</mapper>
+

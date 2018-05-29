@@ -1,0 +1,344 @@
+﻿<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+PUBLIC "-//ibatis.apache.org//DTD Mapper 3.0//EN"
+"http://ibatis.apache.org/dtd/ibatis-3-mapper.dtd">
+
+
+<!-- 使用namespace的话sql搜索定位会比较方便 -->
+<mapper namespace="com.hwl.service.dao.ManagerMapper">
+
+	<resultMap id="ManagerMap" type="com.hwl.service.model.Manager">
+        <result property="managerId" column="manager_id"/>
+        <result property="name" column="name"/>
+        <result property="idNo" column="id_no"/>
+        <result property="provincestr" column="province"/>
+        <result property="citystr" column="city"/>
+        <result property="districtstr" column="district"/>
+        <result property="street" column="street"/>
+        <result property="shopIdstr" column="shop_id"/>
+        <result property="mobile" column="mobile"/>
+        <result property="telephone" column="telephone"/>
+        <result property="status" column="status"/>
+        <result property="code" column="code"/>
+        <result property="createByAdm" column="create_by_adm"/>
+        <result property="createDate" column="create_date"/>
+        <result property="updateByAdm" column="update_by_adm"/>
+        <result property="updateDate" column="update_date"/>
+        <result property="roleId" column="role_id"/>
+        <result property="password" column="password"/>
+        <result property="account" column="account"/>
+        <result property="openId" column="open_id"/>
+        <result property="picWx" column="pic_wx"/>
+        <result property="nickname" column="nickname"/>
+        
+	</resultMap>
+	<!-- 分页查询接口 -->
+	<select id="getManagerListPage" parameterType="Manager"
+		resultMap="ManagerMap">
+		
+		SELECT m.name AS NAME ,s.name AS shop_id,m.manager_id AS manager_id ,
+		m.status AS STATUS,
+		n.province AS province,
+		na.city AS city,
+		nat.district AS district,
+		m.id_no AS id_no ,
+		m.account AS account ,
+		m.mobile AS mobile 
+		FROM shop s , nation n , nation na, nation nat , manager m
+		WHERE m.create_by_adm=#{createByAdm} and m.shop_id=s.shop_id AND m.province=n.id AND m.city=na.id
+		AND m.district=nat.id
+		
+		<if test="district!=null and district!=''">
+		AND m.district=#{district}
+		</if>
+		<!-- <trim prefix="WHERE" prefixOverrides="AND | OR"> -->
+	</select>
+	<!-- 按编号查询 -->
+	<select id="getManagerById" parameterType="int" resultMap="ManagerMap">
+	
+	SELECT m.name AS NAME ,s.name AS shop_id,m.manager_id AS manager_id ,
+		m.status AS STATUS,
+		n.province AS province,
+		na.city AS city,
+		nat.district AS district,
+		m.id_no AS id_no ,
+		m.account AS account ,
+		m.mobile AS mobile ,
+		m.telephone AS telephone,
+		mr.role_id as role_id
+		FROM shop s , nation n , nation na, nation nat , manager m ,manager_role mr
+		WHERE m.manager_id = #{managerId} and m.shop_id=s.shop_id AND m.province=n.id AND m.city=na.id
+		AND m.district=nat.id and m.manager_id=mr.manager_id
+	</select>
+	
+	<select id="getManager" parameterType="Manager" resultMap="ManagerMap">
+		select *
+		from manager where mobile=#{mobile} and status=1
+	</select>
+	
+	<select id="getManagerAcc" parameterType="Manager" resultMap="ManagerMap">
+		select *
+		from manager where account=#{account} and status=1
+	</select>
+	
+	<select id="getManagerId" parameterType="Manager" resultMap="ManagerMap">
+		select *
+		from manager where open_id=#{openId} and status=1
+	</select>
+	
+	<select id="getManagerForMess" parameterType="int"
+		resultMap="ManagerMap">
+		
+		SELECT m.mobile AS mobile
+		
+		FROM  manager m,manager_role mr
+		WHERE m.shop_id=#{shopId} and m.status=1 
+		and m.manager_id=mr.manager_id
+		and mr.role_id=2
+		<!-- <trim prefix="WHERE" prefixOverrides="AND | OR"> -->
+	</select>
+	
+	<select id="getManagerByShop" parameterType="int"
+		resultMap="ManagerMap">
+		
+		SELECT m.name AS NAME ,m.manager_id AS manager_id 
+		
+		FROM  manager m
+		WHERE m.shop_id=#{shopId} and m.status=1
+		<!-- <trim prefix="WHERE" prefixOverrides="AND | OR"> -->
+	</select>
+	
+	<!-- 登陆认证 -->
+	<select id="login" parameterType="Manager" resultMap="ManagerMap">
+		select *
+		from manager where 
+		account = #{account} 
+		and password=#{password}
+		and status=1
+	</select>
+	
+	
+	<!-- 借用code 返回  角色 基础数据 -->
+	<select id="findAllRoles" parameterType="int" resultMap="ManagerMap">
+	SELECT r.description as code,r.role_id as role_id
+	FROM role r
+	WHERE 
+	r.state=0
+	</select>
+	
+	<!-- 借用code 返回  角色 -->
+	<select id="findRoles" parameterType="int" resultMap="ManagerMap">
+	SELECT r.name as code,r.role_id as role_id
+	FROM role r,manager_role mr,manager m 
+	WHERE 
+	mr.role_id=r.role_id 
+	AND m.manager_id=mr.manager_id 
+	AND m.manager_id = #{managerId}
+	and m.status=1
+	and mr.state = 0
+	and r.state>=0
+	</select>
+	
+	<!-- 借用code 返回  权限 -->
+	<select id="findPermissions" parameterType="String" resultMap="ManagerMap">
+	
+	SELECT distinct p.name as code
+	FROM role r,permission p,role_permission rp 
+	WHERE rp.permission_id=p.permission_id 
+	AND rp.role_id= r.role_id 
+	AND r.role_id in (${roleids})
+	and r.state=0
+	and rp.state=0
+	and p.state=0
+	
+	</select>
+	
+	
+	<!-- 添加 -->
+	<insert id="insertManager" parameterType="Manager" useGeneratedKeys="true" keyProperty="managerId">
+        INSERT INTO manager (
+        	manager_id ,
+        	name ,
+        	id_no ,
+        	province ,
+        	city ,
+        	district ,
+        	street ,
+        	shop_id ,
+        	mobile ,
+        	telephone ,
+        	status ,
+        	code ,
+        	create_by_adm ,
+        	update_by_adm ,
+        	update_date ,
+        	role_id ,
+        	account,
+        	password,
+        	open_id,
+        	pic_wx, 
+        	nickname
+        ) VALUES (
+        	#{managerId} ,
+        	#{name} ,
+        	#{idNo} ,
+        	#{province} ,
+        	#{city} ,
+        	#{district} ,
+        	#{street} ,
+        	#{shopId} ,
+        	#{mobile} ,
+        	#{telephone} ,
+        	#{status} ,
+        	#{code} ,
+        	#{createByAdm} ,
+        	#{updateByAdm} ,
+        	#{updateDate} ,
+        	#{roleId} ,
+        	#{account},
+        	#{password},
+        	#{openId},
+        	#{picWx},
+        	#{nickname}  
+        )
+	</insert>
+	<!-- 修改 -->
+	<update id="updateManager" >
+        UPDATE manager 
+        <trim prefix="SET" suffixOverrides=",">
+	        <if test="name!=null and name!=''">
+	        name = #{name},
+	        </if>
+	        <if test="province!=null and province!=''">
+	        province = #{province},
+	        </if>
+	        <if test="city!=null and city!=''">
+	        city = #{city},
+	        </if>
+	        <if test="district!=null and district!=''">
+	        district = #{district},
+	        </if>
+	        <if test="street!=null and street!=''">
+	        street = #{street},
+	        </if>
+	        <if test="shopId!=null and shopId!=''">
+	        shop_id = #{shopId},
+	        </if>
+	        <if test="status!=null and status!=''">
+	        status = #{status},
+	        </if>
+	        <if test="code!=null and code!=''">
+	        code = #{code},
+	        </if>
+	        <if test="createByAdm!=null and createByAdm!=''">
+	        create_by_adm = #{createByAdm},
+	        </if>
+	        <if test="createDate!=null and createDate!=''">
+	        create_date = #{createDate},
+	        </if>
+	        <if test="updateByAdm!=null and updateByAdm!=''">
+	        update_by_adm = #{updateByAdm},
+	        </if>
+	        <if test="updateDate!=null and updateDate!=''">
+	        update_date = #{updateDate},
+	        </if>
+	        <if test="roleId!=null and roleId!=''">
+	        role_id = #{roleId},
+	        </if>
+	        <if test="password!=null and password!=''">
+	        password = #{password},
+	        </if>
+	        <if test="openId!=null and openId!=''">
+	        open_id = #{openId},
+	        </if>
+	        <if test="picWx!=null and picWx!=''">
+	        pic_wx = #{picWx},
+	        </if>
+	        <if test="nickname!=null and nickname!=''">
+	        nickname = #{nickname},
+	        </if>
+	        <if test="1==1">
+	        id_no = #{idNo},
+	        mobile = #{mobile},
+	        telephone = #{telephone},
+	        </if>
+	      </trim>  
+        WHERE 
+	        manager_id = #{managerId} 
+	</update>
+	<!-- 修改 -->
+	<update id="updateManagerPwd" >
+        UPDATE manager 
+        <trim prefix="SET" suffixOverrides=",">
+	        <if test="name!=null and name!=''">
+	        name = #{name},
+	        </if>
+	        <if test="idNo!=null and idNo!=''">
+	        id_no = #{idNo},
+	        </if>
+	        <if test="province!=null and province!=''">
+	        province = #{province},
+	        </if>
+	        <if test="city!=null and city!=''">
+	        city = #{city},
+	        </if>
+	        <if test="district!=null and district!=''">
+	        district = #{district},
+	        </if>
+	        <if test="street!=null and street!=''">
+	        street = #{street},
+	        </if>
+	        <if test="shopId!=null and shopId!=''">
+	        shop_id = #{shopId},
+	        </if>
+	        <if test="mobile!=null and mobile!=''">
+	        mobile = #{mobile},
+	        </if>
+	        <if test="telephone!=null and telephone!=''">
+	        telephone = #{telephone},
+	        </if>
+	        <if test="status!=null and status!=''">
+	        status = #{status},
+	        </if>
+	        <if test="code!=null and code!=''">
+	        code = #{code},
+	        </if>
+	        <if test="createByAdm!=null and createByAdm!=''">
+	        create_by_adm = #{createByAdm},
+	        </if>
+	        <if test="createDate!=null and createDate!=''">
+	        create_date = #{createDate},
+	        </if>
+	        <if test="updateByAdm!=null and updateByAdm!=''">
+	        update_by_adm = #{updateByAdm},
+	        </if>
+	        <if test="updateDate!=null and updateDate!=''">
+	        update_date = #{updateDate},
+	        </if>
+	        <if test="roleId!=null and roleId!=''">
+	        role_id = #{roleId},
+	        </if>
+	        <if test="password!=null and password!=''">
+	        password = #{password},
+	        </if>
+	        <if test="openId!=null and openId!=''">
+	        open_id = #{openId},
+	        </if>
+	        <if test="picWx!=null and picWx!=''">
+	        pic_wx = #{picWx},
+	        </if>
+	        <if test="nickname!=null and nickname!=''">
+	        nickname = #{nickname},
+	        </if>
+	      </trim>  
+        WHERE 
+	        mobile = #{mobile} 
+	</update>
+	<!-- 删除 -->
+	<delete id="deleteManager" parameterType="int">
+        delete from  manager WHERE
+        manager_id = #{managerId} 
+    </delete>
+	
+</mapper>
+

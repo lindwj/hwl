@@ -1,0 +1,104 @@
+﻿<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+PUBLIC "-//ibatis.apache.org//DTD Mapper 3.0//EN"
+"http://ibatis.apache.org/dtd/ibatis-3-mapper.dtd">
+
+
+<!-- 使用namespace的话sql搜索定位会比较方便 -->
+<mapper namespace="com.hwl.service.dao.SdElectResAccMapper">
+
+	<resultMap id="SdElectResAccMap" type="com.hwl.service.model.SdElectResAcc">
+        <result property="sdElectResAccId" column="sd_elect_res_acc_id"/>
+        <result property="ztName" column="zt_name"/>
+        <result property="ztNumber" column="zt_number"/>
+        <result property="acctUnit" column="acct_unit"/>
+        <result property="orgId" column="org_id"/>
+        <result property="stdCurrency" column="std_currency"/>
+        <result property="fyear" column="f_year"/>
+        <result property="stdVerNumber" column="std_ver_number"/>
+        <result property="status" column="status"/>
+        <result property="fRule" column="f_rule"/>
+        <result property="createDate" column="create_date"/>
+	</resultMap>
+	<!-- 分页查询接口 -->
+	<select id="getSdElectResAccListPage" parameterType="SdElectResAcc"
+		resultMap="SdElectResAccMap">
+		select * from sd_elect_res_acc
+		<!-- <trim prefix="WHERE" prefixOverrides="AND | OR"> -->
+	</select>
+	<!-- 按编号查询 -->
+	<select id="getSdElectResAccById" parameterType="int" resultMap="SdElectResAccMap">
+		select *
+		from sd_elect_res_acc where sd_elect_res_acc_id = #{sdElectResAccId}
+	</select>
+	<!-- 添加 -->
+	<insert id="insertSdElectResAcc" parameterType="SdElectResAcc" useGeneratedKeys="true" keyProperty="sdElectResAccId">
+        INSERT INTO sd_elect_res_acc (
+        	sd_elect_res_acc_id ,
+        	zt_name ,
+        	zt_number ,
+        	acct_unit ,
+        	org_id ,
+        	std_currency ,
+        	f_year ,
+        	std_ver_number ,
+        	status ,
+        	f_rule,
+        	create_date 
+        ) VALUES (
+        	#{sdElectResAccId} ,
+        	#{ztName} ,
+        	#{ztNumber} ,
+        	#{acctUnit} ,
+        	#{orgId} ,
+        	#{stdCurrency} ,
+        	#{fyear} ,
+        	#{stdVerNumber} ,
+        	1 ,
+        	#{fRule} ,
+        	now() 
+        )
+	</insert>
+	<!-- 修改 -->
+	<update id="updateSdElectResAcc" >
+        UPDATE sd_elect_res_acc 
+        <trim prefix="SET" suffixOverrides=",">
+	        <if test="ztName!=null and ztName!=''">
+	        zt_name = #{ztName},
+	        </if>
+	        <if test="ztNumber!=null and ztNumber!=''">
+	        zt_number = #{ztNumber},
+	        </if>
+	        <if test="acctUnit!=null and acctUnit!=''">
+	        acct_unit = #{acctUnit},
+	        </if>
+	        <if test="orgId!=null and orgId!=''">
+	        org_id = #{orgId},
+	        </if>
+	        <if test="stdCurrency!=null and stdCurrency!=''">
+	        std_currency = #{stdCurrency},
+	        </if>
+	        <if test="fyear!=null and fyear!=''">
+	        f_year = #{fyear},
+	        </if>
+	        <if test="stdVerNumber!=null and stdVerNumber!=''">
+	        std_ver_number = #{stdVerNumber},
+	        </if>
+	        <if test="status!=null and status!=''">
+	        status = #{status},
+	        </if>
+	        <if test="createDate!=null and createDate!=''">
+	        create_date = #{createDate},
+	        </if>
+	      </trim>  
+        WHERE 
+	        sd_elect_res_acc_id = #{sdElectResAccId} 
+	</update>
+	<!-- 删除 -->
+	<delete id="deleteSdElectResAcc" parameterType="int">
+        UPDATE sd_elect_res_acc set state='X' WHERE
+        sd_elect_res_acc_id = #{sdElectResAccId} 
+    </delete>
+	
+</mapper>
+

@@ -1,0 +1,502 @@
+﻿<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+PUBLIC "-//ibatis.apache.org//DTD Mapper 3.0//EN"
+"http://ibatis.apache.org/dtd/ibatis-3-mapper.dtd">
+
+
+<!-- 使用namespace的话sql搜索定位会比较方便 -->
+<mapper namespace="com.hwl.service.dao.SdAcctAmountMapper">
+
+	<resultMap id="SdAcctAmountMap" type="com.hwl.service.model.SdAcctAmount">
+        <result property="sdAcctAmountId" column="sd_acct_amount_id"/>
+        <result property="sdAccountId" column="sd_account_id"/>
+        <result property="acctName" column="acct_name"/>
+        <result property="acctId" column="acct_id"/>
+        <result property="fyear" column="f_year"/>
+        <result property="perdNumber" column="perd_number"/>
+        <result property="curNo" column="cur_no"/>
+        <result property="curName" column="cur_name"/>
+        <result property="bamountS" column="b_amount_s"/>
+        <result property="bamountN" column="b_amount_n"/>
+        <result property="bamountDc" column="b_amount_dc"/>
+        <result property="damountS" column="d_amount_s"/>
+        <result property="damountN" column="d_amount_n"/>
+        <result property="camountS" column="c_amount_s"/>
+        <result property="camountN" column="c_amount_n"/>
+        <result property="eamountS" column="e_amount_s"/>
+        <result property="eamountN" column="e_amount_n"/>
+        <result property="eamountDc" column="e_amount_dc"/>
+        <result property="unitId" column="unit_id"/>
+        <result property="bqty" column="b_qty"/>
+        <result property="dqty" column="d_qty"/>
+        <result property="cqty" column="c_qty"/>
+        <result property="eqty" column="e_qty"/>
+        <result property="fzhsNum1" column="fzhs_num1"/>
+        <result property="fzhsFinedName1" column="fzhs_fined_name1"/>
+        <result property="fzhsNo1" column="fzhs_no1"/>
+        <result property="fzhsName1" column="fzhs_name1"/>
+        <result property="fzhsNum2" column="fzhs_num2"/>
+        <result property="fzhsFinedName2" column="fzhs_fined_name2"/>
+        <result property="fzhsNo2" column="fzhs_no2"/>
+        <result property="fzhsName2" column="fzhs_name2"/>
+        <result property="fzhsNum3" column="fzhs_num3"/>
+        <result property="fzhsFinedName3" column="fzhs_fined_name3"/>
+        <result property="fzhsNo3" column="fzhs_no3"/>
+        <result property="fzhsName3" column="fzhs_name3"/>
+        <result property="fzhsNum4" column="fzhs_num4"/>
+        <result property="fzhsFinedName4" column="fzhs_fined_name4"/>
+        <result property="fzhsNo4" column="fzhs_no4"/>
+        <result property="fzhsName4" column="fzhs_name4"/>
+        <result property="fzhsNum5" column="fzhs_num5"/>
+        <result property="fzhsFinedName5" column="fzhs_fined_name5"/>
+        <result property="fzhsNo5" column="fzhs_no5"/>
+        <result property="fzhsName5" column="fzhs_name5"/>
+        <result property="fzhsNum6" column="fzhs_num6"/>
+        <result property="fzhsFinedName6" column="fzhs_fined_name6"/>
+        <result property="fzhsNo6" column="fzhs_no6"/>
+        <result property="fzhsName6" column="fzhs_name6"/>
+        <result property="ljJf" column="lj_jf"/>
+        <result property="ljDf" column="lj_df"/>
+        <result property="ljJfWb" column="lj_jf_wb"/>
+        <result property="ljDfWb" column="lj_df_wb"/>
+        <result property="ljJfSl" column="lj_jf_sl"/>
+        <result property="ljDfSl" column="lj_df_sl"/>
+        <result property="isRelateFzhs" column="is_relate_fzhs"/>
+        <result property="sdElectResAccId" column="sd_elect_res_acc_id"/>
+        <result property="createDate" column="create_date"/>
+	</resultMap>
+	<!-- 分页查询接口 -->
+	<select id="getSdAcctAmountListPage" parameterType="SdAcctAmount"
+		resultMap="SdAcctAmountMap">
+		select * from sd_acct_amount
+		<!-- <trim prefix="WHERE" prefixOverrides="AND | OR"> -->
+	</select>
+	<!-- 按编号查询 -->
+	<select id="getSdAcctAmountById" parameterType="int" resultMap="SdAcctAmountMap">
+		select *
+		from sd_acct_amount where sd_acct_amount_id = #{sdAcctAmountId}
+	</select>
+	<!-- 添加 -->
+	<insert id="insertSdAcctAmount" parameterType="SdAcctAmount" useGeneratedKeys="true" keyProperty="sdAcctAmountId">
+        INSERT INTO sd_acct_amount (
+        	sd_acct_amount_id ,
+        	sd_account_id ,
+        	acct_name ,
+        	acct_id ,
+        	f_year ,
+        	perd_number ,
+        	cur_no ,
+        	cur_name ,
+        	b_amount_s ,
+        	b_amount_n ,
+        	b_amount_dc ,
+        	d_amount_s ,
+        	d_amount_n ,
+        	c_amount_s ,
+        	c_amount_n ,
+        	e_amount_s ,
+        	e_amount_n ,
+        	e_amount_dc ,
+        	unit_id ,
+        	b_qty ,
+        	d_qty ,
+        	c_qty ,
+        	e_qty ,
+        	fzhs_num1 ,
+        	fzhs_fined_name1 ,
+        	fzhs_no1 ,
+        	fzhs_name1 ,
+        	fzhs_num2 ,
+        	fzhs_fined_name2 ,
+        	fzhs_no2 ,
+        	fzhs_name2 ,
+        	fzhs_num3 ,
+        	fzhs_fined_name3 ,
+        	fzhs_no3 ,
+        	fzhs_name3 ,
+        	fzhs_num4 ,
+        	fzhs_fined_name4 ,
+        	fzhs_no4 ,
+        	fzhs_name4 ,
+        	fzhs_num5 ,
+        	fzhs_fined_name5 ,
+        	fzhs_no5 ,
+        	fzhs_name5 ,
+        	fzhs_num6 ,
+        	fzhs_fined_name6 ,
+        	fzhs_no6 ,
+        	fzhs_name6 ,
+        	lj_jf ,
+        	lj_df ,
+        	lj_jf_wb ,
+        	lj_df_wb ,
+        	lj_jf_sl ,
+        	lj_df_sl ,
+        	is_relate_fzhs ,
+        	sd_elect_res_acc_id ,
+        	create_date 
+        ) VALUES (
+        	#{sdAcctAmountId} ,
+        	#{sdAccountId} ,
+        	#{acctName} ,
+        	#{acctId} ,
+        	#{fyear} ,
+        	#{perdNumber} ,
+        	#{curNo} ,
+        	#{curName} ,
+        	#{bamountS} ,
+        	#{bamountN} ,
+        	#{bamountDc} ,
+        	#{damountS} ,
+        	#{damountN} ,
+        	#{camountS} ,
+        	#{camountN} ,
+        	#{eamountS} ,
+        	#{eamountN} ,
+        	#{eamountDc} ,
+        	#{unitId} ,
+        	#{bqty} ,
+        	#{dqty} ,
+        	#{cqty} ,
+        	#{eqty} ,
+        	#{fzhsNum1} ,
+        	#{fzhsFinedName1} ,
+        	#{fzhsNo1} ,
+        	#{fzhsName1} ,
+        	#{fzhsNum2} ,
+        	#{fzhsFinedName2} ,
+        	#{fzhsNo2} ,
+        	#{fzhsName2} ,
+        	#{fzhsNum3} ,
+        	#{fzhsFinedName3} ,
+        	#{fzhsNo3} ,
+        	#{fzhsName3} ,
+        	#{fzhsNum4} ,
+        	#{fzhsFinedName4} ,
+        	#{fzhsNo4} ,
+        	#{fzhsName4} ,
+        	#{fzhsNum5} ,
+        	#{fzhsFinedName5} ,
+        	#{fzhsNo5} ,
+        	#{fzhsName5} ,
+        	#{fzhsNum6} ,
+        	#{fzhsFinedName6} ,
+        	#{fzhsNo6} ,
+        	#{fzhsName6} ,
+        	#{ljJf} ,
+        	#{ljDf} ,
+        	#{ljJfWb} ,
+        	#{ljDfWb} ,
+        	#{ljJfSl} ,
+        	#{ljDfSl} ,
+        	#{isRelateFzhs} ,
+        	#{sdElectResAccId} ,
+        	#{createDate} 
+        )
+	</insert>
+	
+	
+	<!-- 批量添加 -->
+	<insert id="insertSdAcctAmountList" parameterType="SdAcctAmount" >
+	
+	INSERT INTO sd_acct_amount (
+        	acct_name ,
+        	acct_id ,
+        	f_year ,
+        	perd_number ,
+        	cur_no ,
+        	cur_name ,
+        	b_amount_s ,
+        	b_amount_n ,
+        	b_amount_dc ,
+        	d_amount_s ,
+        	d_amount_n ,
+        	c_amount_s ,
+        	c_amount_n ,
+        	e_amount_s ,
+        	e_amount_n ,
+        	e_amount_dc ,
+        	unit_id ,
+        	b_qty ,
+        	d_qty ,
+        	c_qty ,
+        	e_qty ,
+        	fzhs_num1 ,
+        	fzhs_fined_name1 ,
+        	fzhs_no1 ,
+        	fzhs_name1 ,
+        	fzhs_num2 ,
+        	fzhs_fined_name2 ,
+        	fzhs_no2 ,
+        	fzhs_name2 ,
+        	fzhs_num3 ,
+        	fzhs_fined_name3 ,
+        	fzhs_no3 ,
+        	fzhs_name3 ,
+        	fzhs_num4 ,
+        	fzhs_fined_name4 ,
+        	fzhs_no4 ,
+        	fzhs_name4 ,
+        	fzhs_num5 ,
+        	fzhs_fined_name5 ,
+        	fzhs_no5 ,
+        	fzhs_name5 ,
+        	fzhs_num6 ,
+        	fzhs_fined_name6 ,
+        	fzhs_no6 ,
+        	fzhs_name6 ,
+        	lj_jf ,
+        	lj_df ,
+        	lj_jf_wb ,
+        	lj_df_wb ,
+        	lj_jf_sl ,
+        	lj_df_sl ,
+        	is_relate_fzhs ,
+        	sd_elect_res_acc_id ,
+        	create_date 
+        ) VALUES
+        <foreach collection="list" item="item" index="index" separator="," > 
+    (
+        	#{item.acctName} ,
+        	#{item.acctId} ,
+        	#{item.fyear} ,
+        	#{item.perdNumber} ,
+        	#{item.curNo} ,
+        	#{item.curName} ,
+        	#{item.bamountS} ,
+        	#{item.bamountN} ,
+        	#{item.bamountDc} ,
+        	#{item.damountS} ,
+        	#{item.damountN} ,
+        	#{item.camountS} ,
+        	#{item.camountN} ,
+        	#{item.eamountS} ,
+        	#{item.eamountN} ,
+        	#{item.eamountDc} ,
+        	#{item.unitId} ,
+        	#{item.bqty} ,
+        	#{item.dqty} ,
+        	#{item.cqty} ,
+        	#{item.eqty} ,
+        	#{item.fzhsNum1} ,
+        	#{item.fzhsFinedName1} ,
+        	#{item.fzhsNo1} ,
+        	#{item.fzhsName1} ,
+        	#{item.fzhsNum2} ,
+        	#{item.fzhsFinedName2} ,
+        	#{item.fzhsNo2} ,
+        	#{item.fzhsName2} ,
+        	#{item.fzhsNum3} ,
+        	#{item.fzhsFinedName3} ,
+        	#{item.fzhsNo3} ,
+        	#{item.fzhsName3} ,
+        	#{item.fzhsNum4} ,
+        	#{item.fzhsFinedName4} ,
+        	#{item.fzhsNo4} ,
+        	#{item.fzhsName4} ,
+        	#{item.fzhsNum5} ,
+        	#{item.fzhsFinedName5} ,
+        	#{item.fzhsNo5} ,
+        	#{item.fzhsName5} ,
+        	#{item.fzhsNum6} ,
+        	#{item.fzhsFinedName6} ,
+        	#{item.fzhsNo6} ,
+        	#{item.fzhsName6} ,
+        	#{item.ljJf} ,
+        	#{item.ljDf} ,
+        	#{item.ljJfWb} ,
+        	#{item.ljDfWb} ,
+        	#{item.ljJfSl} ,
+        	#{item.ljDfSl} ,
+        	#{item.isRelateFzhs} ,
+        	#{item.sdElectResAccId} ,
+        	now()
+        	
+        	
+        )
+    </foreach>
+    </insert>
+	
+	
+	
+	<!-- 修改 -->
+	<update id="updateSdAcctAmount" >
+        UPDATE sd_acct_amount 
+        <trim prefix="SET" suffixOverrides=",">
+	        <if test="sdAccountId!=null and sdAccountId!=''">
+	        sd_account_id = #{sdAccountId},
+	        </if>
+	        <if test="acctName!=null and acctName!=''">
+	        acct_name = #{acctName},
+	        </if>
+	        <if test="acctId!=null and acctId!=''">
+	        acct_id = #{acctId},
+	        </if>
+	        <if test="fyear!=null and fyear!=''">
+	        f_year = #{fyear},
+	        </if>
+	        <if test="perdNumber!=null and perdNumber!=''">
+	        perd_number = #{perdNumber},
+	        </if>
+	        <if test="curNo!=null and curNo!=''">
+	        cur_no = #{curNo},
+	        </if>
+	        <if test="curName!=null and curName!=''">
+	        cur_name = #{curName},
+	        </if>
+	        <if test="bamountS!=null and bamountS!=''">
+	        b_amount_s = #{bamountS},
+	        </if>
+	        <if test="bamountN!=null and bamountN!=''">
+	        b_amount_n = #{bamountN},
+	        </if>
+	        <if test="bamountDc!=null and bamountDc!=''">
+	        b_amount_dc = #{bamountDc},
+	        </if>
+	        <if test="damountS!=null and damountS!=''">
+	        d_amount_s = #{damountS},
+	        </if>
+	        <if test="damountN!=null and damountN!=''">
+	        d_amount_n = #{damountN},
+	        </if>
+	        <if test="camountS!=null and camountS!=''">
+	        c_amount_s = #{camountS},
+	        </if>
+	        <if test="camountN!=null and camountN!=''">
+	        c_amount_n = #{camountN},
+	        </if>
+	        <if test="eamountS!=null and eamountS!=''">
+	        e_amount_s = #{eamountS},
+	        </if>
+	        <if test="eamountN!=null and eamountN!=''">
+	        e_amount_n = #{eamountN},
+	        </if>
+	        <if test="eamountDc!=null and eamountDc!=''">
+	        e_amount_dc = #{eamountDc},
+	        </if>
+	        <if test="unitId!=null and unitId!=''">
+	        unit_id = #{unitId},
+	        </if>
+	        <if test="bqty!=null and bqty!=''">
+	        b_qty = #{bqty},
+	        </if>
+	        <if test="dqty!=null and dqty!=''">
+	        d_qty = #{dqty},
+	        </if>
+	        <if test="cqty!=null and cqty!=''">
+	        c_qty = #{cqty},
+	        </if>
+	        <if test="eqty!=null and eqty!=''">
+	        e_qty = #{eqty},
+	        </if>
+	        <if test="fzhsNum1!=null and fzhsNum1!=''">
+	        fzhs_num1 = #{fzhsNum1},
+	        </if>
+	        <if test="fzhsFinedName1!=null and fzhsFinedName1!=''">
+	        fzhs_fined_name1 = #{fzhsFinedName1},
+	        </if>
+	        <if test="fzhsNo1!=null and fzhsNo1!=''">
+	        fzhs_no1 = #{fzhsNo1},
+	        </if>
+	        <if test="fzhsName1!=null and fzhsName1!=''">
+	        fzhs_name1 = #{fzhsName1},
+	        </if>
+	        <if test="fzhsNum2!=null and fzhsNum2!=''">
+	        fzhs_num2 = #{fzhsNum2},
+	        </if>
+	        <if test="fzhsFinedName2!=null and fzhsFinedName2!=''">
+	        fzhs_fined_name2 = #{fzhsFinedName2},
+	        </if>
+	        <if test="fzhsNo2!=null and fzhsNo2!=''">
+	        fzhs_no2 = #{fzhsNo2},
+	        </if>
+	        <if test="fzhsName2!=null and fzhsName2!=''">
+	        fzhs_name2 = #{fzhsName2},
+	        </if>
+	        <if test="fzhsNum3!=null and fzhsNum3!=''">
+	        fzhs_num3 = #{fzhsNum3},
+	        </if>
+	        <if test="fzhsFinedName3!=null and fzhsFinedName3!=''">
+	        fzhs_fined_name3 = #{fzhsFinedName3},
+	        </if>
+	        <if test="fzhsNo3!=null and fzhsNo3!=''">
+	        fzhs_no3 = #{fzhsNo3},
+	        </if>
+	        <if test="fzhsName3!=null and fzhsName3!=''">
+	        fzhs_name3 = #{fzhsName3},
+	        </if>
+	        <if test="fzhsNum4!=null and fzhsNum4!=''">
+	        fzhs_num4 = #{fzhsNum4},
+	        </if>
+	        <if test="fzhsFinedName4!=null and fzhsFinedName4!=''">
+	        fzhs_fined_name4 = #{fzhsFinedName4},
+	        </if>
+	        <if test="fzhsNo4!=null and fzhsNo4!=''">
+	        fzhs_no4 = #{fzhsNo4},
+	        </if>
+	        <if test="fzhsName4!=null and fzhsName4!=''">
+	        fzhs_name4 = #{fzhsName4},
+	        </if>
+	        <if test="fzhsNum5!=null and fzhsNum5!=''">
+	        fzhs_num5 = #{fzhsNum5},
+	        </if>
+	        <if test="fzhsFinedName5!=null and fzhsFinedName5!=''">
+	        fzhs_fined_name5 = #{fzhsFinedName5},
+	        </if>
+	        <if test="fzhsNo5!=null and fzhsNo5!=''">
+	        fzhs_no5 = #{fzhsNo5},
+	        </if>
+	        <if test="fzhsName5!=null and fzhsName5!=''">
+	        fzhs_name5 = #{fzhsName5},
+	        </if>
+	        <if test="fzhsNum6!=null and fzhsNum6!=''">
+	        fzhs_num6 = #{fzhsNum6},
+	        </if>
+	        <if test="fzhsFinedName6!=null and fzhsFinedName6!=''">
+	        fzhs_fined_name6 = #{fzhsFinedName6},
+	        </if>
+	        <if test="fzhsNo6!=null and fzhsNo6!=''">
+	        fzhs_no6 = #{fzhsNo6},
+	        </if>
+	        <if test="fzhsName6!=null and fzhsName6!=''">
+	        fzhs_name6 = #{fzhsName6},
+	        </if>
+	        <if test="ljJf!=null and ljJf!=''">
+	        lj_jf = #{ljJf},
+	        </if>
+	        <if test="ljDf!=null and ljDf!=''">
+	        lj_df = #{ljDf},
+	        </if>
+	        <if test="ljJfWb!=null and ljJfWb!=''">
+	        lj_jf_wb = #{ljJfWb},
+	        </if>
+	        <if test="ljDfWb!=null and ljDfWb!=''">
+	        lj_df_wb = #{ljDfWb},
+	        </if>
+	        <if test="ljJfSl!=null and ljJfSl!=''">
+	        lj_jf_sl = #{ljJfSl},
+	        </if>
+	        <if test="ljDfSl!=null and ljDfSl!=''">
+	        lj_df_sl = #{ljDfSl},
+	        </if>
+	        <if test="isRelateFzhs!=null and isRelateFzhs!=''">
+	        is_relate_fzhs = #{isRelateFzhs},
+	        </if>
+	        <if test="sdElectResAccId!=null and sdElectResAccId!=''">
+	        sd_elect_res_acc_id = #{sdElectResAccId},
+	        </if>
+	        <if test="createDate!=null and createDate!=''">
+	        create_date = #{createDate},
+	        </if>
+	      </trim>  
+        WHERE 
+	        sd_acct_amount_id = #{sdAcctAmountId} 
+	</update>
+	<!-- 删除 -->
+	<delete id="deleteSdAcctAmount" parameterType="int">
+        UPDATE sd_acct_amount set state='X' WHERE
+        sd_acct_amount_id = #{sdAcctAmountId} 
+    </delete>
+	
+</mapper>
+

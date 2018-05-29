@@ -1,0 +1,224 @@
+﻿<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+PUBLIC "-//ibatis.apache.org//DTD Mapper 3.0//EN"
+"http://ibatis.apache.org/dtd/ibatis-3-mapper.dtd">
+
+
+<!-- 使用namespace的话sql搜索定位会比较方便 -->
+<mapper namespace="com.hwl.service.dao.GstdAmtMapper">
+
+	<resultMap id="GstdAmtMap" type="com.hwl.service.model.GstdAmt">
+        <result property="gstdAmtId" column="g_std_amt_id"/>
+        <result property="fcaseNum" column="f_case_num"/>
+        <result property="sdElectResAccId" column="sd_elect_res_acc_id"/>
+        <result property="fcaseYear" column="f_case_year"/>
+        <result property="fcode" column="f_code"/>
+        <result property="fperiod" column="f_period"/>
+        <result property="fyearBeg" column="f_year_beg"/>
+        <result property="fyearBegDebitBal" column="f_year_beg_debit_bal"/>
+        <result property="fyearBegCreditBal" column="f_year_beg_credit_bal"/>
+        <result property="fyearBal" column="f_year_bal"/>
+        <result property="fendDebitBal" column="f_end_debit_bal"/>
+        <result property="fendCreditBal" column="f_end_credit_bal"/>
+        <result property="fbal" column="f_bal"/>
+        <result property="fbegBal" column="f_beg_bal"/>
+        <result property="fdebitBal" column="f_debit_bal"/>
+        <result property="fcreditBal" column="f_credit_bal"/>
+        <result property="fyearDebitBal" column="f_year_debit_bal"/>
+        <result property="fyearCreditBal" column="f_year_credit_bal"/>
+        <result property="fendBal" column="f_end_bal"/>
+	</resultMap>
+	<!-- 分页查询接口 -->
+	<select id="getGstdAmtListPage" parameterType="GstdAmt"
+		resultMap="GstdAmtMap">
+		select * from g_std_amt
+		<!-- <trim prefix="WHERE" prefixOverrides="AND | OR"> -->
+	</select>
+	<!-- 按编号查询 -->
+	<select id="getGstdAmtById" parameterType="int" resultMap="GstdAmtMap">
+		select *
+		from g_std_amt where g_std_amt_id = #{gstdAmtId}
+	</select>
+	
+	
+	<!-- 总账第一个会计期间数据计算 -->
+	<insert id="insertGstdAmtFirst" parameterType="GstdAmt">
+	INSERT INTO g_std_amt(sd_elect_res_acc_id,f_case_year,f_period,f_code,f_dc,f_beg_bal,f_year_beg_debit_bal,f_year_beg_credit_bal,f_bal,f_debit_bal,f_credit_bal,f_end_bal,f_end_debit_bal,f_end_credit_bal,f_year_bal,f_year_debit_bal,f_year_credit_bal,f_year_beg)
+	
+	
+	
+	SELECT ${sdElectResAccId},${fcaseYear},${fperiod},a.f_code,a.f_dc,IFNULL(a.begbalsum,0),f_year_beg_debit_bal,f_year_beg_credit_bal,IFNULL(voucher,0),IFNULL(d_amount_n,0),IFNULL(c_amount_n,0), IFNULL(a.begbalsum,0) +IFNULL(voucher,0) AS qmye,CASE a.f_dc WHEN 1 THEN (IFNULL(a.begbalsum,0) +IFNULL(voucher,0)) ELSE 0 END AS qmjfye,CASE a.f_dc WHEN -1 THEN (IFNULL(a.begbalsum,0) +IFNULL(voucher,0)) ELSE 0 END AS qmdfye,IFNULL(voucher,0),IFNULL(d_amount_n,0),IFNULL(c_amount_n,0),IFNULL(a.begbalsum,0) FROM
+
+(
+SELECT f_code,f_dc,begbalsum,CASE f_dc WHEN 1 THEN begbalsum ELSE 0 END AS f_year_beg_debit_bal,CASE f_dc WHEN -1 THEN begbalsum ELSE 0 END AS f_year_beg_credit_bal FROM 
+(
+SELECT f_code,f_dc,SUM(begbal) AS begbalsum FROM 
+
+(SELECT b_amount_n,b_amount_dc,qiye_code,f_std_code,f_code,f_dc,b_amount_dc*f_dc*b_amount_n AS begbal FROM
+ 
+(SELECT IFNULL(saa.b_amount_n,0) AS b_amount_n ,CASE saa.b_amount_dc WHEN '借' THEN 1 ELSE -1 END AS b_amount_dc,ga.f_code AS qiye_code,ga.f_std_code,psa.f_code,psa.f_dc FROM g_account ga,p_std_account psa ,sd_acct_amount saa 
+WHERE psa.f_level=1 and psa.f_rule in (#{fRule},3)
+AND ga.f_std_code LIKE CONCAT(psa.f_code,'%') AND ga.sd_elect_res_acc_id = #{sdElectResAccId} 
+AND ga.f_is_detail=0 AND saa.acct_id=ga.f_code AND saa.sd_elect_res_acc_id = #{sdElectResAccId} AND saa.f_year=#{fcaseYear} AND saa.perd_number=#{fperiod}
+AND saa.fzhs_num1 ='' AND saa.fzhs_num2 ='' AND saa.fzhs_num3 ='' AND saa.fzhs_num4 ='' AND saa.fzhs_num5 ='' AND saa.fzhs_num6 ='' 
+) temp
+
+) qcye GROUP BY f_code,f_dc
+
+) dc
+
+) a 
+
+LEFT JOIN
+
+(SELECT f_code,f_dc,SUM(voucher) AS voucher,SUM(d_amount_n) AS d_amount_n,SUM(c_amount_n) AS c_amount_n FROM 
+(SELECT qiye_code,f_std_code,f_code,f_dc,f_dc*(d_amount_n+c_amount_n*-1) AS voucher,d_amount_n,c_amount_n FROM
+(SELECT IFNULL(sv.c_amount_n,0) AS c_amount_n ,IFNULL(sv.d_amount_n,0) AS d_amount_n,ga.f_code AS qiye_code,ga.f_std_code,psa.f_code,psa.f_dc FROM g_account ga,p_std_account psa ,sd_voucher sv 
+WHERE psa.f_level=1 and psa.f_rule in (#{fRule},3)
+AND ga.f_std_code LIKE CONCAT(psa.f_code,'%') AND ga.sd_elect_res_acc_id = #{sdElectResAccId} 
+AND ga.f_is_detail=0 AND sv.acct_id=ga.f_code AND sv.sd_elect_res_acc_id = #{sdElectResAccId} AND sv.f_year=#{fcaseYear} AND sv.perd_number=#{fperiod}) temp) vouchetab GROUP BY f_code,f_dc) b 
+
+ON a.f_code=b.f_code
+	
+	</insert>
+	
+	
+	
+	<!-- 总账每月数据计算 -->
+	<insert id="insertGstdAmtNext" parameterType="GstdAmt">
+	INSERT INTO g_std_amt(sd_elect_res_acc_id,f_case_year,f_period,f_code,f_dc,f_beg_bal,f_year_beg_debit_bal,f_year_beg_credit_bal,f_bal,f_debit_bal,f_credit_bal,f_end_bal,f_end_debit_bal,f_end_credit_bal,f_year_bal,f_year_debit_bal,f_year_credit_bal,f_year_beg)
+
+SELECT ${sdElectResAccId},${fcaseYear},${fperiod},gsa.f_code,gsa.f_dc,IFNULL(gsa.f_end_bal,0),IFNULL(gsa.f_end_debit_bal,0),IFNULL(gsa.f_end_credit_bal,0) ,IFNULL(voucher,0),IFNULL(d_amount_n,0),IFNULL(c_amount_n,0), IFNULL(gsa.f_end_bal,0) +IFNULL(voucher,0) AS qmye,CASE gsa.f_dc WHEN 1 THEN (IFNULL(gsa.f_end_bal,0) +IFNULL(voucher,0)) ELSE 0 END AS qmjfye,CASE gsa.f_dc WHEN -1 THEN (IFNULL(gsa.f_end_bal,0) +IFNULL(voucher,0)) ELSE 0 END AS qmdfye,IFNULL(gsa.f_year_bal,0)+IFNULL(voucher,0),IFNULL(gsa.f_year_debit_bal,0)+IFNULL(d_amount_n,0),IFNULL(gsa.f_year_credit_bal,0) +IFNULL(c_amount_n,0),IFNULL(gsa.f_year_beg,0) FROM g_std_amt gsa 
+
+LEFT JOIN 
+
+(SELECT f_code,f_dc,SUM(voucher) AS voucher,SUM(d_amount_n) AS d_amount_n,SUM(c_amount_n) AS c_amount_n FROM 
+(SELECT qiye_code,f_std_code,f_code,f_dc,f_dc*(d_amount_n+c_amount_n*-1) AS voucher,d_amount_n,c_amount_n FROM
+(SELECT IFNULL(sv.c_amount_n,0) as c_amount_n ,IFNULL(sv.d_amount_n,0) as d_amount_n,ga.f_code AS qiye_code,ga.f_std_code,psa.f_code,psa.f_dc FROM g_account ga,p_std_account psa ,sd_voucher sv 
+WHERE psa.f_level=1 and psa.f_rule in (#{fRule},3)
+AND ga.f_std_code LIKE CONCAT(psa.f_code,'%') AND ga.sd_elect_res_acc_id = #{sdElectResAccId}
+AND ga.f_is_detail=0 AND sv.acct_id=ga.f_code AND sv.sd_elect_res_acc_id = #{sdElectResAccId} AND sv.f_year=#{fcaseYear}  AND sv.perd_number=#{fperiod}) temp) vouchetab GROUP BY f_code,f_dc) b
+
+ON gsa.f_code=b.f_code 
+
+WHERE gsa.sd_elect_res_acc_id = #{sdElectResAccId} AND gsa.f_case_year=#{fcasePreYear} AND gsa.f_period=#{fprePeriod}
+	
+	
+	</insert>
+	
+	
+	
+	<!-- 添加 -->
+	<insert id="insertGstdAmt" parameterType="GstdAmt" useGeneratedKeys="true" keyProperty="gstdAmtId">
+        INSERT INTO g_std_amt (
+        	g_std_amt_id ,
+        	f_case_num ,
+        	sd_elect_res_acc_id ,
+        	f_case_year ,
+        	f_code ,
+        	f_period ,
+        	f_year_beg ,
+        	f_year_beg_debit_bal ,
+        	f_year_beg_credit_bal ,
+        	f_year_bal ,
+        	f_end_debit_bal ,
+        	f_end_credit_bal ,
+        	f_bal ,
+        	f_beg_bal ,
+        	f_debit_bal ,
+        	f_credit_bal ,
+        	f_year_debit_bal ,
+        	f_year_credit_bal ,
+        	f_end_bal 
+        ) VALUES (
+        	#{gstdAmtId} ,
+        	#{fcaseNum} ,
+        	#{sdElectResAccId} ,
+        	#{fcaseYear} ,
+        	#{fcode} ,
+        	#{fperiod} ,
+        	#{fyearBeg} ,
+        	#{fyearBegDebitBal} ,
+        	#{fyearBegCreditBal} ,
+        	#{fyearBal} ,
+        	#{fendDebitBal} ,
+        	#{fendCreditBal} ,
+        	#{fbal} ,
+        	#{fbegBal} ,
+        	#{fdebitBal} ,
+        	#{fcreditBal} ,
+        	#{fyearDebitBal} ,
+        	#{fyearCreditBal} ,
+        	#{fendBal} 
+        )
+	</insert>
+	<!-- 修改 -->
+	<update id="updateGstdAmt" >
+        UPDATE g_std_amt 
+        <trim prefix="SET" suffixOverrides=",">
+	        <if test="fcaseNum!=null and fcaseNum!=''">
+	        f_case_num = #{fcaseNum},
+	        </if>
+	        <if test="sdElectResAccId!=null and sdElectResAccId!=''">
+	        sd_elect_res_acc_id = #{sdElectResAccId},
+	        </if>
+	        <if test="fcaseYear!=null and fcaseYear!=''">
+	        f_case_year = #{fcaseYear},
+	        </if>
+	        <if test="fcode!=null and fcode!=''">
+	        f_code = #{fcode},
+	        </if>
+	        <if test="fperiod!=null and fperiod!=''">
+	        f_period = #{fperiod},
+	        </if>
+	        <if test="fyearBeg!=null and fyearBeg!=''">
+	        f_year_beg = #{fyearBeg},
+	        </if>
+	        <if test="fyearBegDebitBal!=null and fyearBegDebitBal!=''">
+	        f_year_beg_debit_bal = #{fyearBegDebitBal},
+	        </if>
+	        <if test="fyearBegCreditBal!=null and fyearBegCreditBal!=''">
+	        f_year_beg_credit_bal = #{fyearBegCreditBal},
+	        </if>
+	        <if test="fyearBal!=null and fyearBal!=''">
+	        f_year_bal = #{fyearBal},
+	        </if>
+	        <if test="fendDebitBal!=null and fendDebitBal!=''">
+	        f_end_debit_bal = #{fendDebitBal},
+	        </if>
+	        <if test="fendCreditBal!=null and fendCreditBal!=''">
+	        f_end_credit_bal = #{fendCreditBal},
+	        </if>
+	        <if test="fbal!=null and fbal!=''">
+	        f_bal = #{fbal},
+	        </if>
+	        <if test="fbegBal!=null and fbegBal!=''">
+	        f_beg_bal = #{fbegBal},
+	        </if>
+	        <if test="fdebitBal!=null and fdebitBal!=''">
+	        f_debit_bal = #{fdebitBal},
+	        </if>
+	        <if test="fcreditBal!=null and fcreditBal!=''">
+	        f_credit_bal = #{fcreditBal},
+	        </if>
+	        <if test="fyearDebitBal!=null and fyearDebitBal!=''">
+	        f_year_debit_bal = #{fyearDebitBal},
+	        </if>
+	        <if test="fyearCreditBal!=null and fyearCreditBal!=''">
+	        f_year_credit_bal = #{fyearCreditBal},
+	        </if>
+	        <if test="fendBal!=null and fendBal!=''">
+	        f_end_bal = #{fendBal},
+	        </if>
+	      </trim>  
+        WHERE 
+	        g_std_amt_id = #{gstdAmtId} 
+	</update>
+	<!-- 删除 -->
+	<delete id="deleteGstdAmt" parameterType="int">
+        UPDATE g_std_amt set state='X' WHERE
+        g_std_amt_id = #{gstdAmtId} 
+    </delete>
+	
+</mapper>
+

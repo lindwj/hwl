@@ -1,0 +1,71 @@
+﻿<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+PUBLIC "-//ibatis.apache.org//DTD Mapper 3.0//EN"
+"http://ibatis.apache.org/dtd/ibatis-3-mapper.dtd">
+
+
+<!-- 使用namespace的话sql搜索定位会比较方便 -->
+<mapper namespace="com.hwl.service.dao.SdglBasicInfoMapper">
+
+	<resultMap id="SdglBasicInfoMap" type="com.hwl.service.model.SdglBasicInfo">
+        <result property="sdglBasicInfoId" column="sdgl_basic_info_id"/>
+        <result property="acctIdRule" column="acct_id_rule"/>
+        <result property="cashFlowNoRule" column="cash_flow_no_rule"/>
+        <result property="sdElectResAccId" column="sd_elect_res_acc_id"/>
+        <result property="createDate" column="create_date"/>
+	</resultMap>
+	<!-- 分页查询接口 -->
+	<select id="getSdglBasicInfoListPage" parameterType="SdglBasicInfo"
+		resultMap="SdglBasicInfoMap">
+		select * from sdgl_basic_info
+		<!-- <trim prefix="WHERE" prefixOverrides="AND | OR"> -->
+	</select>
+	<!-- 按编号查询 -->
+	<select id="getSdglBasicInfoById" parameterType="int" resultMap="SdglBasicInfoMap">
+		select *
+		from sdgl_basic_info where sdgl_basic_info_id = #{sdglBasicInfoId}
+	</select>
+	<!-- 添加 -->
+	<insert id="insertSdglBasicInfo" parameterType="SdglBasicInfo" useGeneratedKeys="true" keyProperty="sdglBasicInfoId">
+        INSERT INTO sdgl_basic_info (
+        	sdgl_basic_info_id ,
+        	acct_id_rule ,
+        	cash_flow_no_rule ,
+        	sd_elect_res_acc_id ,
+        	create_date 
+        ) VALUES (
+        	#{sdglBasicInfoId} ,
+        	#{acctIdRule} ,
+        	#{cashFlowNoRule} ,
+        	#{sdElectResAccId} ,
+        	now()
+        )
+	</insert>
+	<!-- 修改 -->
+	<update id="updateSdglBasicInfo" >
+        UPDATE sdgl_basic_info 
+        <trim prefix="SET" suffixOverrides=",">
+	        <if test="acctIdRule!=null and acctIdRule!=''">
+	        acct_id_rule = #{acctIdRule},
+	        </if>
+	        <if test="cashFlowNoRule!=null and cashFlowNoRule!=''">
+	        cash_flow_no_rule = #{cashFlowNoRule},
+	        </if>
+	        <if test="sdElectResAccId!=null and sdElectResAccId!=''">
+	        sd_elect_res_acc_id = #{sdElectResAccId},
+	        </if>
+	        <if test="createDate!=null and createDate!=''">
+	        create_date = #{createDate},
+	        </if>
+	      </trim>  
+        WHERE 
+	        sdgl_basic_info_id = #{sdglBasicInfoId} 
+	</update>
+	<!-- 删除 -->
+	<delete id="deleteSdglBasicInfo" parameterType="int">
+        UPDATE sdgl_basic_info set state='X' WHERE
+        sdgl_basic_info_id = #{sdglBasicInfoId} 
+    </delete>
+	
+</mapper>
+

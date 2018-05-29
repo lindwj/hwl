@@ -1,0 +1,118 @@
+﻿<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+PUBLIC "-//ibatis.apache.org//DTD Mapper 3.0//EN"
+"http://ibatis.apache.org/dtd/ibatis-3-mapper.dtd">
+
+
+<!-- 使用namespace的话sql搜索定位会比较方便 -->
+<mapper namespace="com.hwl.service.dao.SdPeriodMapper">
+
+	<resultMap id="SdPeriodMap" type="com.hwl.service.model.SdPeriod">
+        <result property="sdPeriodId" column="sd_period_id"/>
+        <result property="fyear" column="f_year"/>
+        <result property="perdNumber" column="perd_number"/>
+        <result property="perdStartDate" column="perd_start_date"/>
+        <result property="perdEndDate" column="perd_end_date"/>
+        <result property="perdStatus" column="perd_status"/>
+        <result property="sdElectResAccId" column="sd_elect_res_acc_id"/>
+        <result property="createDate" column="create_date"/>
+	</resultMap>
+	<!-- 分页查询接口 -->
+	<select id="getSdPeriodListPage" parameterType="SdPeriod"
+		resultMap="SdPeriodMap">
+		select * from sd_period
+		<!-- <trim prefix="WHERE" prefixOverrides="AND | OR"> -->
+	</select>
+	<!-- 按编号查询 -->
+	<select id="getSdPeriodById" parameterType="SdPeriod" resultMap="SdPeriodMap">
+		select *
+		from sd_period where sd_elect_res_acc_id = #{sdElectResAccId} order by f_year,perd_number
+	</select>
+	<!-- 添加 -->
+	<insert id="insertSdPeriod" parameterType="SdPeriod" useGeneratedKeys="true" keyProperty="sdPeriodId">
+        INSERT INTO sd_period (
+        	sd_period_id ,
+        	f_year ,
+        	perd_number ,
+        	perd_start_date ,
+        	perd_end_date ,
+        	perd_status ,
+        	sd_elect_res_acc_id ,
+        	create_date 
+        ) VALUES (
+        	#{sdPeriodId} ,
+        	#{fyear} ,
+        	#{perdNumber} ,
+        	#{perdStartDate} ,
+        	#{perdEndDate} ,
+        	#{perdStatus} ,
+        	#{sdElectResAccId} ,
+        	#{createDate} 
+        )
+	</insert>
+	
+	<!-- 批量添加 -->
+	<insert id="insertSdPeriodList" parameterType="SdPeriod" >
+        INSERT INTO sd_period (
+        	f_year ,
+        	perd_number ,
+        	perd_start_date ,
+        	perd_end_date ,
+        	perd_status ,
+        	sd_elect_res_acc_id ,
+        	create_date 
+        ) VALUES 
+        <foreach collection="list" item="item" index="index" separator="," > 
+    (
+        	#{item.fyear} ,
+        	#{item.perdNumber} ,
+        	#{item.perdStartDateStr} ,
+        	#{item.perdEndDateStr} ,
+        	#{item.perdStatus} ,
+        	#{item.sdElectResAccId} ,
+        	now()
+        	
+        )  
+    </foreach>
+	</insert>
+	
+	  
+    
+    
+	<!-- 修改 -->
+	<update id="updateSdPeriod" >
+        UPDATE sd_period 
+        <trim prefix="SET" suffixOverrides=",">
+	        <if test="fyear!=null and fyear!=''">
+	        f_year = #{fyear},
+	        </if>
+	        <if test="perdNumber!=null and perdNumber!=''">
+	        perd_number = #{perdNumber},
+	        </if>
+	        <if test="perdStartDate!=null and perdStartDate!=''">
+	        perd_start_date = #{perdStartDate},
+	        </if>
+	        <if test="perdEndDate!=null and perdEndDate!=''">
+	        perd_end_date = #{perdEndDate},
+	        </if>
+	        <if test="perdStatus!=null and perdStatus!=''">
+	        perd_status = #{perdStatus},
+	        </if>
+	        <if test="sdElectResAccId!=null and sdElectResAccId!=''">
+	        sd_elect_res_acc_id = #{sdElectResAccId},
+	        </if>
+	        <if test="createDate!=null and createDate!=''">
+	        create_date = #{createDate},
+	        </if>
+	      </trim>  
+        WHERE 
+	        sd_period_id = #{sdPeriodId} 
+	</update>
+	<!-- 删除 -->
+	<delete id="deleteSdPeriod" parameterType="int">
+        UPDATE sd_period set state='X' WHERE
+        sd_period_id = #{sdPeriodId} 
+    </delete>
+	
+</mapper>
+

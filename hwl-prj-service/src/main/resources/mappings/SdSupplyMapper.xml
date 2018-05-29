@@ -1,0 +1,110 @@
+﻿<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+PUBLIC "-//ibatis.apache.org//DTD Mapper 3.0//EN"
+"http://ibatis.apache.org/dtd/ibatis-3-mapper.dtd">
+
+
+<!-- 使用namespace的话sql搜索定位会比较方便 -->
+<mapper namespace="com.hwl.service.dao.SdSupplyMapper">
+
+	<resultMap id="SdSupplyMap" type="com.hwl.service.model.SdSupply">
+        <result property="sdSupplyId" column="sd_supply_id"/>
+        <result property="sdUserItemId" column="sd_user_item_id"/>
+        <result property="supplyNo" column="supply_no"/>
+        <result property="supplyName" column="supply_name"/>
+        <result property="supplyShortName" column="supply_short_name"/>
+        <result property="createDate" column="create_date"/>
+        <result property="sdElectResAccId" column="sd_elect_res_acc_id"/>
+	</resultMap>
+	<!-- 分页查询接口 -->
+	<select id="getSdSupplyListPage" parameterType="SdSupply"
+		resultMap="SdSupplyMap">
+		select * from sd_supply
+		<!-- <trim prefix="WHERE" prefixOverrides="AND | OR"> -->
+	</select>
+	<!-- 按编号查询 -->
+	<select id="getSdSupplyById" parameterType="int" resultMap="SdSupplyMap">
+		select *
+		from sd_supply where sd_supply_id = #{sdSupplyId}
+	</select>
+	<!-- 添加 -->
+	<insert id="insertSdSupply" parameterType="SdSupply" useGeneratedKeys="true" keyProperty="sdSupplyId">
+        INSERT INTO sd_supply (
+        	sd_supply_id ,
+        	sd_user_item_id ,
+        	supply_no ,
+        	supply_name ,
+        	supply_short_name ,
+        	create_date ,
+        	sd_elect_res_acc_id 
+        ) VALUES (
+        	#{sdSupplyId} ,
+        	#{sdUserItemId} ,
+        	#{supplyNo} ,
+        	#{supplyName} ,
+        	#{supplyShortName} ,
+        	#{createDate} ,
+        	#{sdElectResAccId} 
+        )
+	</insert>
+	
+	<insert id="insertSdSupplyList" parameterType="SdSupply">
+        INSERT INTO sd_supply (
+        	sd_user_item_id ,
+        	supply_no ,
+        	supply_name ,
+        	supply_short_name ,
+        	create_date ,
+        	sd_elect_res_acc_id 
+        ) VALUES 
+        <foreach collection="list" item="item" index="index" separator="," > 
+       
+        
+        (
+        	#{item.sdUserItemId} ,
+        	#{item.supplyNo} ,
+        	#{item.supplyName} ,
+        	#{item.supplyShortName} ,
+        	now(),
+        	#{item.sdElectResAccId} 
+        )
+    </foreach>
+        
+        
+	</insert>
+	
+	
+	<!-- 修改 -->
+	<update id="updateSdSupply" >
+        UPDATE sd_supply 
+        <trim prefix="SET" suffixOverrides=",">
+	        <if test="sdUserItemId!=null and sdUserItemId!=''">
+	        sd_user_item_id = #{sdUserItemId},
+	        </if>
+	        <if test="supplyNo!=null and supplyNo!=''">
+	        supply_no = #{supplyNo},
+	        </if>
+	        <if test="supplyName!=null and supplyName!=''">
+	        supply_name = #{supplyName},
+	        </if>
+	        <if test="supplyShortName!=null and supplyShortName!=''">
+	        supply_short_name = #{supplyShortName},
+	        </if>
+	        <if test="createDate!=null and createDate!=''">
+	        create_date = #{createDate},
+	        </if>
+	        <if test="sdElectResAccId!=null and sdElectResAccId!=''">
+	        sd_elect_res_acc_id = #{sdElectResAccId},
+	        </if>
+	      </trim>  
+        WHERE 
+	        sd_supply_id = #{sdSupplyId} 
+	</update>
+	<!-- 删除 -->
+	<delete id="deleteSdSupply" parameterType="int">
+        UPDATE sd_supply set state='X' WHERE
+        sd_supply_id = #{sdSupplyId} 
+    </delete>
+	
+</mapper>
+

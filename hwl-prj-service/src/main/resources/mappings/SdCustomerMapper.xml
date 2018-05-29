@@ -1,0 +1,112 @@
+﻿<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+PUBLIC "-//ibatis.apache.org//DTD Mapper 3.0//EN"
+"http://ibatis.apache.org/dtd/ibatis-3-mapper.dtd">
+
+
+<!-- 使用namespace的话sql搜索定位会比较方便 -->
+<mapper namespace="com.hwl.service.dao.SdCustomerMapper">
+
+	<resultMap id="SdCustomerMap" type="com.hwl.service.model.SdCustomer">
+        <result property="sdCustomerId" column="sd_customer_id"/>
+        <result property="sdUserItemId" column="sd_user_item_id"/>
+        <result property="custName" column="cust_name"/>
+        <result property="custNo" column="cust_no"/>
+        <result property="custShortName" column="cust_short_name"/>
+        <result property="createDate" column="create_date"/>
+        <result property="sdElectResAccId" column="sd_elect_res_acc_id"/>
+	</resultMap>
+	<!-- 分页查询接口 -->
+	<select id="getSdCustomerListPage" parameterType="SdCustomer"
+		resultMap="SdCustomerMap">
+		select * from sd_customer
+		<!-- <trim prefix="WHERE" prefixOverrides="AND | OR"> -->
+	</select>
+	<!-- 按编号查询 -->
+	<select id="getSdCustomerById" parameterType="int" resultMap="SdCustomerMap">
+		select *
+		from sd_customer where sd_customer_id = #{sdCustomerId}
+	</select>
+	<!-- 添加 -->
+	<insert id="insertSdCustomer" parameterType="SdCustomer" useGeneratedKeys="true" keyProperty="sdCustomerId">
+        INSERT INTO sd_customer (
+        	sd_customer_id ,
+        	sd_user_item_id ,
+        	cust_name ,
+        	cust_no ,
+        	cust_short_name ,
+        	create_date ,
+        	sd_elect_res_acc_id 
+        ) VALUES (
+        	#{sdCustomerId} ,
+        	#{sdUserItemId} ,
+        	#{custName} ,
+        	#{custNo} ,
+        	#{custShortName} ,
+        	#{createDate} ,
+        	#{sdElectResAccId} 
+        )
+	</insert>
+	
+	
+	<insert id="insertSdCustomerList" parameterType="SdCustomer" >
+        INSERT INTO sd_customer (
+        	sd_user_item_id ,
+        	cust_name ,
+        	cust_no ,
+        	cust_short_name ,
+        	create_date ,
+        	sd_elect_res_acc_id 
+        ) VALUES
+        
+        <foreach collection="list" item="item" index="index" separator="," > 
+       
+         (
+        	#{item.sdUserItemId} ,
+        	#{item.custName} ,
+        	#{item.custNo} ,
+        	#{item.custShortName} ,
+        	now() ,
+        	#{item.sdElectResAccId} 
+        )
+        
+    </foreach>
+    
+	</insert>
+	
+	
+	
+	<!-- 修改 -->
+	<update id="updateSdCustomer" >
+        UPDATE sd_customer 
+        <trim prefix="SET" suffixOverrides=",">
+	        <if test="sdUserItemId!=null and sdUserItemId!=''">
+	        sd_user_item_id = #{sdUserItemId},
+	        </if>
+	        <if test="custName!=null and custName!=''">
+	        cust_name = #{custName},
+	        </if>
+	        <if test="custNo!=null and custNo!=''">
+	        cust_no = #{custNo},
+	        </if>
+	        <if test="custShortName!=null and custShortName!=''">
+	        cust_short_name = #{custShortName},
+	        </if>
+	        <if test="createDate!=null and createDate!=''">
+	        create_date = #{createDate},
+	        </if>
+	        <if test="sdElectResAccId!=null and sdElectResAccId!=''">
+	        sd_elect_res_acc_id = #{sdElectResAccId},
+	        </if>
+	      </trim>  
+        WHERE 
+	        sd_customer_id = #{sdCustomerId} 
+	</update>
+	<!-- 删除 -->
+	<delete id="deleteSdCustomer" parameterType="int">
+        UPDATE sd_customer set state='X' WHERE
+        sd_customer_id = #{sdCustomerId} 
+    </delete>
+	
+</mapper>
+

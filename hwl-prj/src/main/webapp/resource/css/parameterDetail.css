@@ -1,0 +1,236 @@
+
+/*标题*/
+.ordertitle{
+    width: 444px;
+    height:32px;
+    border-bottom: 1px solid #c6cacc;
+ }
+
+.ordertitle h1{
+    width: 442px;
+    line-height: 30px;
+    background-color:#e4eaec;
+    border: 1px solid #FFFFFF;
+    color: #58666e;
+    text-align: center;
+    font-size: 13px;
+    margin-top: 1px;
+}
+
+.prodetail{
+    width: 210px;
+    float: left;
+    margin: 40px 0 0 40px;
+}
+.prodetail1{
+    width: 190px;
+    float: left;
+    margin: 40px 0 0 0;
+}
+.prodetail2{
+    width: 375px;
+    float: left;
+    margin: 40px 0 0 40px;
+}
+
+.prodetail p,.prodetail1 p,.prodetail2 p{
+    float: left;
+    color: #58666e;
+
+}
+.prodetail input,.prodetail1 input,.prodetail2 input,.prodetail select,.prodetail1 select{
+    float: left;
+    width: 100px;
+    outline: none;
+    line-height: 20px;
+    margin-left: 10px;
+    color: #58666e;
+}
+
+/*确认和取消按钮*/
+.orderbtn{
+    width: 140px;
+    margin: 30px auto 0;
+}
+.orderbtn input{
+    border-bottom: 2px solid #b0b4b5;
+    height: 25px;
+    margin: 0 10px;
+    font-size: 12px;
+
+}
+
+
+
+/*商品展示样式*/
+.content-main {
+    width:100%;
+    margin: 0 auto;
+}
+
+.table{
+    border:1px solid #e4eaec;
+    width:800px;
+    margin: 20px auto 0 auto;
+    padding-bottom: 20px;
+}
+
+.redicon{
+    color: red;
+    padding-top: 3px;
+    vertical-align: -3px;
+    margin-right: 5px;
+}
+
+.addproduct{
+    float: left;
+    margin:20px 0 0 20px;
+}
+.addproduct p{
+    font-size: 14px;
+    float: left;
+    color: #3d474d;
+}
+.addproduct input, .addproduct1 select{
+    width: 200px;
+    float: left;
+    margin-left: 20px;
+    outline: none;
+}
+.addproduct1 select{
+    width: 206px;
+}
+.addproduct1{
+    float: right;
+    margin:20px 20px 0 0 ;
+}
+.addproduct1 p{
+    font-size: 14px;
+    float: left;
+    color: #3d474d;
+}
+.addproduct1 input{
+    width: 200px;
+    float: left;
+    margin-left: 20px;
+    outline: none;
+}
+
+.addproduct2{
+    float: left;
+    margin:20px  0 20px 20px;
+    width: 800px;
+}
+.addproduct2 p{
+    font-size: 14px;
+    float: left;
+    color: #3d474d;
+}
+.input1, .input2, .input3{
+    width: 200px;
+    float: left;
+    margin-left: 20px;
+    outline: none;
+}
+.input2, .input3{
+    margin-left: 28px;
+}
+
+
+
+.add1, .add2, .add3, .add4, .add5{
+    float: left;
+    margin:20px 0 0 20px;
+    width:800px;
+}
+
+.add1 p, .add2 p, .add3 p, .add4 p, .add5 p{
+    font-size: 14px;
+    float: left;
+    color: #3d474d;
+}
+.add1 input, .add2 input, .add3 input, .add4 input, .add5 input{
+    width:665px;
+    float: left;
+    margin-left: 20px;
+    outline: none;
+}
+
+/*添加按钮*/
+#add1, #add2{
+    border-bottom: 2px solid #b0b4b5;
+    border-top: none;
+    border-right: none;
+    border-left: none;
+    height: 25px;
+    color: #808080;
+    padding: 0 12px;
+    text-shadow: 0 0 20px #ffffff;
+    background-color: #ececec;
+    font-size: 12px;
+    border-radius: 2px 2px 2px 2px;
+    outline: none;
+    cursor: pointer;
+    margin: 20px 0 20px 20px;
+
+}
+#add1:hover, #add2:hover{
+    color: #4d4d4d;;
+}
+
+/*每项必填，合同编号不能超过分配数量!*/
+#errorm1{
+    font-size: 13px;
+    color: white;
+    position: absolute;
+    padding: 10px 10px;
+    background-color: rgba(77,77,77,0.6);
+    border-radius: 20px 20px 20px 20px;
+    text-align: center;
+    top:50%;
+    left: 44.5%;
+    display: none;
+    z-index: 998;
+
+}
+#errorm2{
+    font-size: 13px;
+    color: white;
+    position: absolute;
+    padding: 10px 10px;
+    background-color: rgba(77,77,77,0.6);
+    border-radius: 20px 20px 20px 20px;
+    text-align: center;
+    top:70%;
+    left: 44.5%;
+    display: none;
+    z-index: 998;
+
+}
+.modify{
+    border-bottom: 2px solid #b0b4b5;
+    border-top: none;
+    border-right: none;
+    border-left: none;
+    height: 25px;
+    color: #808080;
+    padding: 0 12px;
+    text-shadow: 0 0 20px #ffffff;
+    background-color: #ececec;
+    font-size: 12px;
+    border-radius: 2px 2px 2px 2px;
+    outline: none;
+    cursor: pointer;
+    margin-left: 49%;
+    margin-bottom:30px;
+}
+.modify:hover{
+    color: #4d4d4d;;
+}
+#returnbutton{
+	background-color:#e4eaec;
+	width:802px;
+	margin:0 auto;
+	height:40px;
+}
+

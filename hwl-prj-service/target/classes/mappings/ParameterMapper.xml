@@ -1,0 +1,136 @@
+﻿<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+PUBLIC "-//ibatis.apache.org//DTD Mapper 3.0//EN"
+"http://ibatis.apache.org/dtd/ibatis-3-mapper.dtd">
+
+
+<!-- 使用namespace的话sql搜索定位会比较方便 -->
+<mapper namespace="com.hwl.service.dao.ParameterMapper">
+
+	<resultMap id="ParameterMap" type="com.hwl.service.model.Parameter">
+        <result property="parameterId" column="parameter_id"/>
+        <result property="parameterName" column="parameter_name"/>
+        <result property="parameterTypeId" column="parameter_type_id"/>
+        <result property="state" column="state"/>
+        <result property="pid" column="p_id"/>
+        <result property="sort" column="sort"/>
+        <result property="description" column="description"/>
+        <result property="icon" column="icon"/>
+        <result property="picture" column="picture"/>
+        <result property="parameterTypeName" column="parameter_type_name"/>
+        <result property="createTime" column="create_time"/>
+        <result property="updateTime" column="update_time"/>
+        <result property="createMan" column="create_man"/>
+        <result property="updateMan" column="update_man"/>
+	</resultMap>
+	<!-- 分页查询接口 -->
+	<select id="getParameterList" parameterType="Parameter"
+		resultMap="ParameterMap">
+		select * from parameter where parameter_type_id=#{parameterTypeId} and state=0 order by sort 
+		<!-- <trim prefix="WHERE" prefixOverrides="AND | OR"> -->
+	</select>
+	
+	<!-- 分类管理分页查询接口 -->
+	<select id="getParameterListPage" parameterType="Parameter"
+		resultMap="ParameterMap">
+		select 
+		pa.parameter_id as parameter_id,
+		pa.parameter_name as parameter_name ,
+		pa.icon as icon	,
+		pt.parameter_type_name as parameter_type_name 
+		
+		from parameter pa, parameter_type pt where pt.parameter_type_id=pa.parameter_type_id and pt.parameter_type_id=1 
+		<if test="parameterName!=null and parameterName!=''">
+		and pa.parameter_name like CONCAT('%',#{parameterName},'%' )
+		</if>
+		 
+		<!-- <trim prefix="WHERE" prefixOverrides="AND | OR"> -->
+	</select>
+	<!-- 按编号查询 -->
+	<select id="getParameterById" parameterType="int" resultMap="ParameterMap">
+		select *
+		from parameter where parameter_id = #{parameterId}
+	</select>
+	<!-- 添加 -->
+	<insert id="insertParameter" parameterType="Parameter" useGeneratedKeys="true" keyProperty="parameterId">
+        INSERT INTO parameter (
+        	parameter_id ,
+        	parameter_name ,
+        	parameter_type_id ,
+        	state ,
+        	p_id ,
+        	sort ,
+        	description,
+        	icon,
+        	picture,
+        	create_time,
+        	update_time,
+        	create_man,
+        	update_man
+        ) VALUES (
+        	#{parameterId} ,
+        	#{parameterName} ,
+        	#{parameterTypeId} ,
+        	#{state} ,
+        	#{pid} ,
+        	#{sort} ,
+        	#{description},
+        	#{icon},
+        	#{picture},
+        	#{createTime},
+        	#{updateTime},
+        	#{createMan},
+        	#{updateMan}
+        )
+	</insert>
+	<!-- 修改 -->
+	<update id="updateParameter" >
+        UPDATE parameter 
+        <trim prefix="SET" suffixOverrides=",">
+	        <if test="parameterName!=null and parameterName!=''">
+	        parameter_name = #{parameterName},
+	        </if>
+	        <if test="parameterTypeId!=null and parameterTypeId!=''">
+	        parameter_type_id = #{parameterTypeId},
+	        </if>
+	        <if test="state!=null and state!=''">
+	        state = #{state},
+	        </if>
+	        <if test="pid!=null and pid!=''">
+	        p_id = #{pid},
+	        </if>
+	        <if test="sort!=null and sort!=''">
+	        sort = #{sort},
+	        </if>
+	        <if test="description!=null and description!=''">
+	        description = #{description},
+	        </if>
+	        <if test="icon!=null and icon!=''">
+	        icon = #{icon},
+	        </if>
+	        <if test="picture!=null and picture!=''">
+	        picture = #{picture},
+	        </if>
+	        <if test="createTime!=null and createTime!=''">
+	        create_time = #{createTime},
+	        </if>
+	        <if test="updateTime!=null and updateTime!=''">
+	        update_time = #{updateTime},
+	        </if>
+	        <if test="createMan!=null and createMan!=''">
+	        create_man = #{createMan},
+	        </if>
+	        <if test="updateMan!=null and updateMan!=''">
+	        update_man = #{updateMan},
+	        </if>
+	      </trim>  
+        WHERE 
+	        parameter_id = #{parameterId} 
+	</update>
+	<!-- 删除 -->
+	<delete id="deleteParameter" parameterType="int">
+		delete from parameter WHERE
+        parameter_id = #{parameterId}
+    </delete>
+</mapper>
+

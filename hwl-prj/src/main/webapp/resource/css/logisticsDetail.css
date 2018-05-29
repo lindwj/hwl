@@ -1,0 +1,206 @@
+
+
+/*右侧分类栏*/
+table{
+    width: 99%;
+    text-align: left;padding: 10px 10px;
+}
+table th,td{
+    padding: 8px 8px;
+    text-align: center;
+}
+
+.table1{
+    border: 1px solid #d2d7d9;
+}
+
+.table1 th, .table th{
+    color: #58666e;
+    background: #e4eaec;
+    font-weight: normal;
+}
+
+table tr{
+    /*border-bottom:1px solid #d2d7d9 ;*/
+}
+/*详细订单展示*/
+.table{
+    margin: 20px 0;
+    border: 1px solid #d2d7d9;
+}
+.table th, .table td{
+    text-align: left;
+}
+.message{
+    width: 80%;
+    float: left;
+}
+.message h1{
+    width: 53px;
+    float: left;
+    text-align: right;
+    line-height: 20px;
+}
+.message p{
+    float: left;
+    margin-left: 10px;
+    line-height: 20px;
+    width: 70%;
+}
+
+.table2{
+    text-align: left;
+    border: 1px solid #d2d7d9;
+    margin-top: 20px;
+}
+
+.table2title{
+    padding: 10px 8px;
+    color: #58666e;
+    font-weight: normal;
+    background: #f0f5f7;
+}
+
+.tablepic{
+    width: 50px;
+    height: 50px;
+}
+.tablepic img{
+    float: left;
+    width: 100%;
+    height: 100%;
+}
+/*订单申请按钮*/
+#applybtn{
+    float: right;
+    margin-right: 1%;
+    cursor: pointer;
+}
+#applybtn:hover{
+    background-color: #f2f2f2;
+}
+#goBtn, #saveBtn{
+    padding: 0 12px;
+    height: 32px;
+}
+
+/*修改等按钮*/
+.changebtn{
+    color: #656565;
+    border: none;
+    padding: 0 12px;
+    background-color:#ececec;
+    font-size: 12px;
+    height: 28px;
+    line-height: 14px;
+    border-bottom: 2px solid #d4d4d4;
+    border-radius: 2px 2px 2px 2px;
+    outline: none;
+    cursor: pointer;
+    font-weight: 300;
+    margin: 5px 5px 0;
+}
+.changebtn:hover{
+    background-color: #f2f2f2;
+}
+
+/*对应的数据栏*/
+.btn-default {
+    padding: 0 10px;
+    height: 20px;
+    background-color: #FFFFFF;
+    border-bottom: 2px solid #b0b4b5;
+    float: right;
+}
+
+.col1{
+    width: 10%;
+    text-align: left;
+    border-bottom:1px solid #d2d7d9 ;
+}
+.col2{
+    width: 16.6%;
+    border-bottom:1px solid #d2d7d9 ;
+}
+.col3{
+    width: 16.6%;
+    border-bottom:1px solid #d2d7d9 ;
+}
+.col4{
+    width: 16.6%;
+    border-bottom:1px solid #d2d7d9 ;
+}
+.col5{
+    width: 16.6%;
+    border-bottom:1px solid #d2d7d9 ;
+}
+.col6{
+    width: 23.2%;
+    border-bottom:1px solid #d2d7d9 ;
+}
+
+/*标题栏*/
+.col11{
+    text-align: left;
+    width: 10%;
+}
+.col12{
+    width: 16.6%;
+
+}
+.col13{
+    width:16.6%;
+}
+.col14{
+    width:16.6%;
+}
+.col15{
+    width:16.6%;
+}
+.col16{
+    width:23.2%;
+}
+
+
+
+
+
+/*分页栏*/
+/*table3*/
+.table3{
+    background-color: #e4eaec;
+    border-bottom: 2px solid #d2d7d9;
+    margin-bottom: 20px;
+}
+
+
+
+/*搜索错误提示*/
+#errorm{
+    font-size: 15px;
+    color: white;
+    position: absolute;
+    padding: 10px 10px;
+    background-color: rgba(77,77,77,0.6);
+    border-radius: 10px 10px 10px 10px;
+    text-align: center;
+    top: 7.5%;
+    left: 30%;
+    display: none;
+
+}
+#errorm4, #errorm5, #errorm6, #errorm7,#errorm8, #errorm9, #errorm10, #errorm11,#errorm12, #errorm13, #errorm14, #errorm15, #errorm16{
+font-size: 15px;
+    color: white;
+    position: absolute;
+    padding: 10px 15px;
+    background-color: rgba(77,77,77,0.6);
+    border-radius: 10px 10px 10px 10px;
+    text-align: center;
+    top:57%;
+    left: 45%;
+    display: none;
+    z-index: 998;
+}
+
+

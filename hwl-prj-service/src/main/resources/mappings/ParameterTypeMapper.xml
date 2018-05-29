@@ -1,0 +1,59 @@
+﻿<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+PUBLIC "-//ibatis.apache.org//DTD Mapper 3.0//EN"
+"http://ibatis.apache.org/dtd/ibatis-3-mapper.dtd">
+
+
+<!-- 使用namespace的话sql搜索定位会比较方便 -->
+<mapper namespace="com.hwl.service.dao.ParameterTypeMapper">
+
+	<resultMap id="ParameterTypeMap" type="com.hwl.service.model.ParameterType">
+        <result property="parameterTypeId" column="parameter_type_id"/>
+        <result property="parameterTypeName" column="parameter_type_name"/>
+        <result property="state" column="state"/>
+	</resultMap>
+	<!-- 分页查询接口 -->
+	<select id="getParameterTypeListPage" parameterType="ParameterType"
+		resultMap="ParameterTypeMap">
+		select * from parameter_type
+		<!-- <trim prefix="WHERE" prefixOverrides="AND | OR"> -->
+	</select>
+	<!-- 按编号查询 -->
+	<select id="getParameterTypeById" parameterType="int" resultMap="ParameterTypeMap">
+		select *
+		from parameter_type where parameter_type_id = #{parameterTypeId}
+	</select>
+	<!-- 添加 -->
+	<insert id="insertParameterType" parameterType="ParameterType" useGeneratedKeys="true" keyProperty="parameterTypeId">
+        INSERT INTO parameter_type (
+        	parameter_type_id ,
+        	parameter_type_name ,
+        	state 
+        ) VALUES (
+        	#{parameterTypeId} ,
+        	#{parameterTypeName} ,
+        	#{state} 
+        )
+	</insert>
+	<!-- 修改 -->
+	<update id="updateParameterType" >
+        UPDATE parameter_type 
+        <trim prefix="SET" suffixOverrides=",">
+	        <if test="parameterTypeName!=null and parameterTypeName!=''">
+	        parameter_type_name = #{parameterTypeName},
+	        </if>
+	        <if test="state!=null and state!=''">
+	        state = #{state},
+	        </if>
+	      </trim>  
+        WHERE 
+	        parameter_type_id = #{parameterTypeId} 
+	</update>
+	<!-- 删除 -->
+	<delete id="deleteParameterType" parameterType="int">
+        UPDATE parameter_type set state='X' WHERE
+        parameter_type_id = #{parameterTypeId} 
+    </delete>
+	
+</mapper>
+

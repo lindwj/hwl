@@ -1,0 +1,77 @@
+[springmvc_mybatis_demo][WARN] [2018-01-17 14:04:01] org.apache.fop.events.LoggingEventListener.processEvent(97) | The following feature isn't implemented by Apache FOP, yet: table-layout="auto" (on fo:table) (See position 17:77)
+[springmvc_mybatis_demo][WARN] [2018-01-17 14:04:02] org.apache.fop.events.LoggingEventListener.processEvent(97) | The following feature isn't implemented by Apache FOP, yet: table-layout="auto" (on fo:table) (See position 449:78)
+[springmvc_mybatis_demo][WARN] [2018-01-17 14:04:02] org.apache.fop.events.LoggingEventListener.processEvent(94) | Glyph "《" (0x300a, dblanglebracketleft) not available in font "Calibri".
+[springmvc_mybatis_demo][WARN] [2018-01-17 14:04:02] org.apache.fop.events.LoggingEventListener.processEvent(94) | Glyph "企" (0x4f01) not available in font "Calibri".
+[springmvc_mybatis_demo][WARN] [2018-01-17 14:04:02] org.apache.fop.events.LoggingEventListener.processEvent(94) | Glyph "业" (0x4e1a) not available in font "Calibri".
+[springmvc_mybatis_demo][WARN] [2018-01-17 14:04:02] org.apache.fop.events.LoggingEventListener.processEvent(94) | Glyph "会" (0x4f1a) not available in font "Calibri".
+[springmvc_mybatis_demo][WARN] [2018-01-17 14:04:02] org.apache.fop.events.LoggingEventListener.processEvent(94) | Glyph "计" (0x8ba1) not available in font "Calibri".
+[springmvc_mybatis_demo][WARN] [2018-01-17 14:04:02] org.apache.fop.events.LoggingEventListener.processEvent(94) | Glyph "准" (0x51c6) not available in font "Calibri".
+[springmvc_mybatis_demo][WARN] [2018-01-17 14:04:02] org.apache.fop.events.LoggingEventListener.processEvent(94) | Glyph "则" (0x5219) not available in font "Calibri".
+[springmvc_mybatis_demo][WARN] [2018-01-17 14:04:02] org.apache.fop.events.LoggingEventListener.processEvent(94) | Glyph "第" (0x7b2c) not available in font "Calibri".
+[springmvc_mybatis_demo][WARN] [2018-01-17 14:04:02] org.apache.fop.events.LoggingEventListener.processEvent(94) | Font "Symbol,normal,700" not found. Substituting with "Symbol,normal,400".
+[springmvc_mybatis_demo][WARN] [2018-01-17 14:04:02] org.apache.fop.events.LoggingEventListener.processEvent(94) | Font "ZapfDingbats,normal,700" not found. Substituting with "ZapfDingbats,normal,400".
+[springmvc_mybatis_demo][WARN] [2018-01-17 14:04:02] org.apache.fop.events.LoggingEventListener.processEvent(94) | Glyph "资" (0x8d44) not available in font "Calibri-Bold".
+[springmvc_mybatis_demo][WARN] [2018-01-17 14:04:02] org.apache.fop.events.LoggingEventListener.processEvent(94) | Glyph "产" (0x4ea7) not available in font "Calibri-Bold".
+[springmvc_mybatis_demo][WARN] [2018-01-17 14:04:02] org.apache.fop.events.LoggingEventListener.processEvent(94) | Glyph "负" (0x8d1f) not available in font "Calibri-Bold".
+[springmvc_mybatis_demo][WARN] [2018-01-17 14:04:02] org.apache.fop.events.LoggingEventListener.processEvent(94) | Glyph "债" (0x503a) not available in font "Calibri-Bold".
+[springmvc_mybatis_demo][WARN] [2018-01-17 14:04:02] org.apache.fop.events.LoggingEventListener.processEvent(94) | Glyph "表" (0x8868) not available in font "Calibri-Bold".
+[springmvc_mybatis_demo][INFO] [2018-01-17 14:04:02] org.apache.fop.events.LoggingEventListener.processEvent(83) | An fo:table  (See position 17:77) is wider than the available room in inline-progression-dimension. Adjusting end-indent based on overconstrained geometry rules (XSL 1.1, ch. 5.3.4)
+[springmvc_mybatis_demo][WARN] [2018-01-17 14:04:02] org.apache.fop.events.LoggingEventListener.processEvent(94) | Glyph "利" (0x5229) not available in font "Calibri-Bold".
+[springmvc_mybatis_demo][WARN] [2018-01-17 14:04:02] org.apache.fop.events.LoggingEventListener.processEvent(94) | Glyph "润" (0x6da6) not available in font "Calibri-Bold".
+[springmvc_mybatis_demo][INFO] [2018-01-17 14:04:02] org.apache.fop.events.LoggingEventListener.processEvent(83) | Rendered page #1.
+[springmvc_mybatis_demo][INFO] [2018-01-17 14:04:02] org.apache.fop.events.LoggingEventListener.processEvent(83) | Rendered page #2.
+[springmvc_mybatis_demo][WARN] [2018-01-17 14:04:02] org.apache.fop.events.LoggingEventListener.processEvent(97) | The following feature isn't implemented by Apache FOP, yet: table-layout="auto" (on fo:table) (See position 593:99)
+[springmvc_mybatis_demo][WARN] [2018-01-17 14:04:02] org.apache.fop.events.LoggingEventListener.processEvent(94) | Glyph "所" (0x6240) not available in font "Calibri-Bold".
+[springmvc_mybatis_demo][INFO] [2018-01-17 14:04:02] org.apache.fop.events.LoggingEventListener.processEvent(83) | An fo:table  (See position 593:99) is wider than the available room in inline-progression-dimension. Adjusting end-indent based on overconstrained geometry rules (XSL 1.1, ch. 5.3.4)
+[springmvc_mybatis_demo][INFO] [2018-01-17 14:04:02] org.apache.fop.events.LoggingEventListener.processEvent(83) | Rendered page #3.
+[springmvc_mybatis_demo][WARN] [2018-01-17 14:04:02] org.apache.fop.events.LoggingEventListener.processEvent(97) | The following feature isn't implemented by Apache FOP, yet: table-layout="auto" (on fo:table) (See position 1565:96)
+[springmvc_mybatis_demo][INFO] [2018-01-17 14:04:02] org.apache.fop.events.LoggingEventListener.processEvent(83) | An fo:table  (See position 1323:117) is wider than the available room in inline-progression-dimension. Adjusting end-indent based on overconstrained geometry rules (XSL 1.1, ch. 5.3.4)
+[springmvc_mybatis_demo][INFO] [2018-01-17 14:04:03] org.apache.fop.events.LoggingEventListener.processEvent(83) | An fo:table  (See position 1565:96) is wider than the available room in inline-progression-dimension. Adjusting end-indent based on overconstrained geometry rules (XSL 1.1, ch. 5.3.4)
+[springmvc_mybatis_demo][INFO] [2018-01-17 14:04:03] org.apache.fop.events.LoggingEventListener.processEvent(83) | An fo:table  (See position 1747:98) is wider than the available room in inline-progression-dimension. Adjusting end-indent based on overconstrained geometry rules (XSL 1.1, ch. 5.3.4)
+[springmvc_mybatis_demo][INFO] [2018-01-17 14:04:03] org.apache.fop.events.LoggingEventListener.processEvent(83) | An fo:table  (See position 1747:98) is wider than the available room in inline-progression-dimension. Adjusting end-indent based on overconstrained geometry rules (XSL 1.1, ch. 5.3.4)
+[springmvc_mybatis_demo][INFO] [2018-01-17 14:04:03] org.apache.fop.events.LoggingEventListener.processEvent(83) | Rendered page #4.
+[springmvc_mybatis_demo][INFO] [2018-01-17 14:04:03] org.apache.fop.events.LoggingEventListener.processEvent(83) | Rendered page #5.
+[springmvc_mybatis_demo][INFO] [2018-01-17 14:04:03] org.apache.fop.events.LoggingEventListener.processEvent(83) | Rendered page #6.
+[springmvc_mybatis_demo][INFO] [2018-01-17 14:04:03] org.apache.fop.events.LoggingEventListener.processEvent(83) | Rendered page #7.
+[springmvc_mybatis_demo][INFO] [2018-01-17 14:04:03] org.apache.fop.events.LoggingEventListener.processEvent(83) | Rendered page #8.
+[springmvc_mybatis_demo][INFO] [2018-01-17 14:04:03] org.apache.fop.events.LoggingEventListener.processEvent(83) | Rendered page #9.
+[springmvc_mybatis_demo][WARN] [2018-01-17 17:40:34] org.apache.fop.events.LoggingEventListener.processEvent(97) | The following feature isn't implemented by Apache FOP, yet: table-layout="auto" (on fo:table) (See position 17:77)
+[springmvc_mybatis_demo][WARN] [2018-01-17 17:40:34] org.apache.fop.events.LoggingEventListener.processEvent(97) | The following feature isn't implemented by Apache FOP, yet: table-layout="auto" (on fo:table) (See position 449:78)
+[springmvc_mybatis_demo][WARN] [2018-01-17 17:40:34] org.apache.fop.events.LoggingEventListener.processEvent(94) | Glyph "《" (0x300a, dblanglebracketleft) not available in font "Calibri".
+[springmvc_mybatis_demo][WARN] [2018-01-17 17:40:34] org.apache.fop.events.LoggingEventListener.processEvent(94) | Glyph "企" (0x4f01) not available in font "Calibri".
+[springmvc_mybatis_demo][WARN] [2018-01-17 17:40:34] org.apache.fop.events.LoggingEventListener.processEvent(94) | Glyph "业" (0x4e1a) not available in font "Calibri".
+[springmvc_mybatis_demo][WARN] [2018-01-17 17:40:34] org.apache.fop.events.LoggingEventListener.processEvent(94) | Glyph "会" (0x4f1a) not available in font "Calibri".
+[springmvc_mybatis_demo][WARN] [2018-01-17 17:40:34] org.apache.fop.events.LoggingEventListener.processEvent(94) | Glyph "计" (0x8ba1) not available in font "Calibri".
+[springmvc_mybatis_demo][WARN] [2018-01-17 17:40:34] org.apache.fop.events.LoggingEventListener.processEvent(94) | Glyph "准" (0x51c6) not available in font "Calibri".
+[springmvc_mybatis_demo][WARN] [2018-01-17 17:40:34] org.apache.fop.events.LoggingEventListener.processEvent(94) | Glyph "则" (0x5219) not available in font "Calibri".
+[springmvc_mybatis_demo][WARN] [2018-01-17 17:40:34] org.apache.fop.events.LoggingEventListener.processEvent(94) | Glyph "第" (0x7b2c) not available in font "Calibri".
+[springmvc_mybatis_demo][WARN] [2018-01-17 17:40:34] org.apache.fop.events.LoggingEventListener.processEvent(94) | Font "Symbol,normal,700" not found. Substituting with "Symbol,normal,400".
+[springmvc_mybatis_demo][WARN] [2018-01-17 17:40:34] org.apache.fop.events.LoggingEventListener.processEvent(94) | Font "ZapfDingbats,normal,700" not found. Substituting with "ZapfDingbats,normal,400".
+[springmvc_mybatis_demo][WARN] [2018-01-17 17:40:34] org.apache.fop.events.LoggingEventListener.processEvent(94) | Glyph "资" (0x8d44) not available in font "Calibri-Bold".
+[springmvc_mybatis_demo][WARN] [2018-01-17 17:40:34] org.apache.fop.events.LoggingEventListener.processEvent(94) | Glyph "产" (0x4ea7) not available in font "Calibri-Bold".
+[springmvc_mybatis_demo][WARN] [2018-01-17 17:40:34] org.apache.fop.events.LoggingEventListener.processEvent(94) | Glyph "负" (0x8d1f) not available in font "Calibri-Bold".
+[springmvc_mybatis_demo][WARN] [2018-01-17 17:40:34] org.apache.fop.events.LoggingEventListener.processEvent(94) | Glyph "债" (0x503a) not available in font "Calibri-Bold".
+[springmvc_mybatis_demo][WARN] [2018-01-17 17:40:34] org.apache.fop.events.LoggingEventListener.processEvent(94) | Glyph "表" (0x8868) not available in font "Calibri-Bold".
+[springmvc_mybatis_demo][INFO] [2018-01-17 17:40:34] org.apache.fop.events.LoggingEventListener.processEvent(83) | An fo:table  (See position 17:77) is wider than the available room in inline-progression-dimension. Adjusting end-indent based on overconstrained geometry rules (XSL 1.1, ch. 5.3.4)
+[springmvc_mybatis_demo][WARN] [2018-01-17 17:40:34] org.apache.fop.events.LoggingEventListener.processEvent(94) | Glyph "利" (0x5229) not available in font "Calibri-Bold".
+[springmvc_mybatis_demo][WARN] [2018-01-17 17:40:34] org.apache.fop.events.LoggingEventListener.processEvent(94) | Glyph "润" (0x6da6) not available in font "Calibri-Bold".
+[springmvc_mybatis_demo][INFO] [2018-01-17 17:40:35] org.apache.fop.events.LoggingEventListener.processEvent(83) | Rendered page #1.
+[springmvc_mybatis_demo][INFO] [2018-01-17 17:40:35] org.apache.fop.events.LoggingEventListener.processEvent(83) | Rendered page #2.
+[springmvc_mybatis_demo][WARN] [2018-01-17 17:40:35] org.apache.fop.events.LoggingEventListener.processEvent(97) | The following feature isn't implemented by Apache FOP, yet: table-layout="auto" (on fo:table) (See position 593:99)
+[springmvc_mybatis_demo][WARN] [2018-01-17 17:40:35] org.apache.fop.events.LoggingEventListener.processEvent(94) | Glyph "所" (0x6240) not available in font "Calibri-Bold".
+[springmvc_mybatis_demo][INFO] [2018-01-17 17:40:35] org.apache.fop.events.LoggingEventListener.processEvent(83) | An fo:table  (See position 593:99) is wider than the available room in inline-progression-dimension. Adjusting end-indent based on overconstrained geometry rules (XSL 1.1, ch. 5.3.4)
+[springmvc_mybatis_demo][INFO] [2018-01-17 17:40:35] org.apache.fop.events.LoggingEventListener.processEvent(83) | Rendered page #3.
+[springmvc_mybatis_demo][INFO] [2018-01-17 17:40:35] org.apache.fop.events.LoggingEventListener.processEvent(83) | Rendered page #4.
+[springmvc_mybatis_demo][WARN] [2018-01-17 17:40:35] org.apache.fop.events.LoggingEventListener.processEvent(97) | The following feature isn't implemented by Apache FOP, yet: table-layout="auto" (on fo:table) (See position 1565:96)
+[springmvc_mybatis_demo][WARN] [2018-01-17 17:40:35] org.apache.fop.events.LoggingEventListener.processEvent(97) | The following feature isn't implemented by Apache FOP, yet: table-layout="auto" (on fo:table) (See position 3375:422)
+[springmvc_mybatis_demo][INFO] [2018-01-17 17:40:35] org.apache.fop.events.LoggingEventListener.processEvent(83) | An fo:table  (See position 1323:117) is wider than the available room in inline-progression-dimension. Adjusting end-indent based on overconstrained geometry rules (XSL 1.1, ch. 5.3.4)
+[springmvc_mybatis_demo][INFO] [2018-01-17 17:40:35] org.apache.fop.events.LoggingEventListener.processEvent(83) | An fo:table  (See position 1565:96) is wider than the available room in inline-progression-dimension. Adjusting end-indent based on overconstrained geometry rules (XSL 1.1, ch. 5.3.4)
+[springmvc_mybatis_demo][INFO] [2018-01-17 17:40:35] org.apache.fop.events.LoggingEventListener.processEvent(83) | An fo:table  (See position 1747:98) is wider than the available room in inline-progression-dimension. Adjusting end-indent based on overconstrained geometry rules (XSL 1.1, ch. 5.3.4)
+[springmvc_mybatis_demo][INFO] [2018-01-17 17:40:35] org.apache.fop.events.LoggingEventListener.processEvent(83) | An fo:table  (See position 1747:98) is wider than the available room in inline-progression-dimension. Adjusting end-indent based on overconstrained geometry rules (XSL 1.1, ch. 5.3.4)
+[springmvc_mybatis_demo][INFO] [2018-01-17 17:40:35] org.apache.fop.events.LoggingEventListener.processEvent(83) | An fo:table  (See position 3375:422) is wider than the available room in inline-progression-dimension. Adjusting end-indent based on overconstrained geometry rules (XSL 1.1, ch. 5.3.4)
+[springmvc_mybatis_demo][INFO] [2018-01-17 17:40:35] org.apache.fop.events.LoggingEventListener.processEvent(83) | Rendered page #5.
+[springmvc_mybatis_demo][INFO] [2018-01-17 17:40:36] org.apache.fop.events.LoggingEventListener.processEvent(83) | Rendered page #6.
+[springmvc_mybatis_demo][INFO] [2018-01-17 17:40:36] org.apache.fop.events.LoggingEventListener.processEvent(83) | Rendered page #7.
+[springmvc_mybatis_demo][INFO] [2018-01-17 17:40:36] org.apache.fop.events.LoggingEventListener.processEvent(83) | Rendered page #8.
+[springmvc_mybatis_demo][INFO] [2018-01-17 17:40:36] org.apache.fop.events.LoggingEventListener.processEvent(83) | Rendered page #9.
+[springmvc_mybatis_demo][INFO] [2018-01-17 17:40:36] org.apache.fop.events.LoggingEventListener.processEvent(83) | Rendered page #10.
